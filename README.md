@@ -27,10 +27,12 @@ First install [Node.js](http://nodejs.org/). Then:
 $ npm install @reconlx/discord.js
 ```
 ## 🛠 Usages (Click on it for more info on how to use it)
++ [reconDB](https://www.npmjs.com/package/@reconlx/discord.js#reconDB) - simple way to store data into mongodb
 + [DaysAgo](https://www.npmjs.com/package/@reconlx/discord.js#daysago) - check how many days ago was it using date format
 + [EmbedPages](https://www.npmjs.com/package/@reconlx/discord.js#embedpages) - simple pagination to make your "MessageEmbed" interactable.
 + [Confirmation](https://www.npmjs.com/package/@reconlx/discord.js#confirmation) - A reaction collector which returns the first emoji collected, can be used as a confirmation prompt.
 + [fetchTranscript](https://www.npmjs.com/package/@reconlx/discord.js#fetchtranscript) - Specify an amount of messages and it will return a discord chat template with messages, acts like a transcript.
++ [timeout](https://www.npmjs.com/package/@reconlx/discord.js#timeout) - Makes it easier to delete messages according to your needs
 
 ## ✈ Importing
 
@@ -144,6 +146,94 @@ module.exports = {
 ![preview](https://i.imgur.com/CB1a6eD.png)
 
 ---
+
+## timeout
+```js
+// destructure the package
+const { timeout } = require('@reconlx/discord.js')
+
+// example
+
+const messageToDelete = await message.channel.send('Hello There 👋')
+
+// using the method
+// template => timeout(message: who can acess, msgToDelete: which message to delete,time: time before the emoji gets deleted)
+timeout(message, messageToDelete, 5000) // only message.author can areact, messageToDelete is going to deleted if collected reactions, if no reactions after 5 seconds the reaction will be removed.
+```
+
+### Preview
+
+![preview](https://i.imgur.com/EV8WZja.gif)
+
+
+---
+---
+---
+
+# reconDB
+## 1. Importing the package
+
+```js
+const { reconDB } = require('@reconlx/discord.js')
+// or
+import { reconDB } from '@reconlx/discord.js'
+```
+
+## 2. Establishing and exporting reconDB
+
+```js
+const db = new reconDB({
+  uri : "your mongodb connection string"
+})
+
+module.exports = db;
+```
+
+## 3. Example on using it
+
+```js
+const db = require('./db.js') // replace db.js with your file path to the setup of reconDB
+
+db.set('numbers', '123')
+```
+
+## Methods
+
+### .set
+
+```js
+// saves data to database
+db.set('key', 'value')
+```
+
+### .get
+
+```js
+// gets value from key
+db.get('key') // returns => value
+```
+
+### .has
+
+```js
+// returns boolean
+db.has('key') // returns => true
+```
+
+### .delete
+
+```js
+// deletes data
+db.delete('key')
+
+// checking for data
+db.has('key') // returns => false
+```
+
+
+
+
+
 
 
 
