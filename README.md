@@ -27,7 +27,7 @@ First install [Node.js](http://nodejs.org/). Then:
 $ npm install @reconlx/discord.js
 ```
 ## 🛠 Usages (Click on it for more info on how to use it)
-+ [reconDB](https://www.npmjs.com/package/@reconlx/discord.js#reconDB) - simple way to store data into mongodb
++ [reconDB](https://www.npmjs.com/package/@reconlx/discord.js#recondb) - simple way to store data into mongodb
 + [DaysAgo](https://www.npmjs.com/package/@reconlx/discord.js#daysago) - check how many days ago was it using date format
 + [EmbedPages](https://www.npmjs.com/package/@reconlx/discord.js#embedpages) - simple pagination to make your "MessageEmbed" interactable.
 + [Confirmation](https://www.npmjs.com/package/@reconlx/discord.js#confirmation) - A reaction collector which returns the first emoji collected, can be used as a confirmation prompt.
