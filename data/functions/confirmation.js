@@ -1,8 +1,8 @@
 async function confirmation(message, author, validReactions, time = 60000) {
-    if(!message) throw new ReferenceError('@reconlx/discord.js => "message" is not defined')
-    if(!validReactions || validReactions.length !== 2) throw new ReferenceError('@reconlx/discord.js => Invalid form body [validReactions]')
-    if(typeof time !== "number") throw new SyntaxError('@reconlx/discord.js => typeof "time" must be a number')
-    if(!message.guild.me.hasPermission('MANAGE_MESSAGES')) return console.log(`@reconlx/discord.js err: Discord Client has to have "MANAGE_MESSAGES" permission.`)
+    if(!message) throw new ReferenceError('reconlx => "message" is not defined')
+    if(!validReactions || validReactions.length !== 2) throw new ReferenceError('reconlx => Invalid form body [validReactions]')
+    if(typeof time !== "number") throw new SyntaxError('reconlx => typeof "time" must be a number')
+    if(!message.guild.me.hasPermission('MANAGE_MESSAGES')) return console.log(`reconlx err: Discord Client has to have "MANAGE_MESSAGES" permission.`)
 
     for (const reaction of validReactions) await message.react(reaction)
 

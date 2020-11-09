@@ -1,10 +1,10 @@
 async function EmbedPages(message, pages, emoji = ['⏪', '⏩'], time = 60000){
 
-    if(!message) throw new ReferenceError('@reconlx/discord.js => "message" is not defined')
-    if(!pages || typeof pages !== 'object') throw new SyntaxError('@reconlx/discord.js => Invalid form body [pages]')
-    if(!emoji || emoji.length !== 2) throw new SyntaxError('@reconlx/discord.js => Invalid form body [emoji]')
-    if(!time) throw new ReferenceError('@reconlx/discord.js => "time" is not defined')
-    if(typeof time !== "number") throw new ReferenceError('@reconlx/discord.js => typeof "time" must be a number')
+    if(!message) throw new ReferenceError('reconlx => "message" is not defined')
+    if(!pages || typeof pages !== 'object') throw new SyntaxError('reconlx => Invalid form body [pages]')
+    if(!emoji || emoji.length !== 2) throw new SyntaxError('reconlx => Invalid form body [emoji]')
+    if(!time) throw new ReferenceError('reconlx => "time" is not defined')
+    if(typeof time !== "number") throw new ReferenceError('reconlx => typeof "time" must be a number')
     if(message.guild.me.hasPermission('MANAGE_MESSAGES')) {
         message.channel.send(pages[0].setFooter(`Page 1 / ${pages.length}`)).then(async msg => {
             await msg.react(emoji[0])

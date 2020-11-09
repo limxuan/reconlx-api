@@ -229,18 +229,3 @@ db.delete('key')
 // checking for data
 db.has('key') // returns => false
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

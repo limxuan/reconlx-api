@@ -1,8 +1,8 @@
 async function fetchTranscript(message, numberOfMessages, sendToAuthor = false) {
-    if(!message) throw new ReferenceError('@reconlx/discord.js => "message" is not defined')
-    if(!numberOfMessages) throw new ReferenceError('@reconlx/discord.js => "numberOfMessages" is not defined')
-    if(typeof numberOfMessages !== "number") throw new SyntaxError('@reconlx/discord.js => typeof "numberOfMessages" must be a number')
-    if(numberOfMessages >= 100) throw new RangeError('@reconlx/discord.js => "numberOfMessages" must be under 100 messages')
+    if(!message) throw new ReferenceError('reconlx => "message" is not defined')
+    if(!numberOfMessages) throw new ReferenceError('reconlx => "numberOfMessages" is not defined')
+    if(typeof numberOfMessages !== "number") throw new SyntaxError('reconlx => typeof "numberOfMessages" must be a number')
+    if(numberOfMessages >= 100) throw new RangeError('reconlx => "numberOfMessages" must be under 100 messages')
     const jsdom = require('jsdom');
     const fs = require('fs')
     const discord = require('discord.js')
