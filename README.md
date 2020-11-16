@@ -33,7 +33,7 @@ $ npm install reconlx
 + [Confirmation](https://www.npmjs.com/package/reconlx#confirmation) - A reaction collector which returns the first emoji collected, can be used as a confirmation prompt.
 + [fetchTranscript](https://www.npmjs.com/package/reconlx#fetchtranscript) - Specify an amount of messages and it will return a discord chat template with messages, acts like a transcript.
 + [timeout](https://www.npmjs.com/package/reconlx#timeout) - Makes it easier to delete messages according to your needs
-
++ [chatBot](https://www.npmjs.com/package/reconlx#chatbot) - Replies to your messages in discord.
 ## ✈ Importing
 
 ```javascript
@@ -165,6 +165,25 @@ timeout(message, messageToDelete, 5000) // only message.author can areact, messa
 
 ![preview](https://i.imgur.com/EV8WZja.gif)
 
+---
+
+## chatBot
+```js
+const { chatBot } = require('reconlx')
+
+/** @parameters
+ * message, message.channel
+ * input, input to give
+*/
+
+// example
+
+ chatBot(message, args.join(" "))
+```
+
+
+### Preview
+![preview](https://imgur.com/DeThtZJ.png)
 
 ---
 ---
