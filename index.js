@@ -11,3 +11,5 @@ module.exports.timeout = require('./data/functions/timeout')
 module.exports.reconDB = require('./data/db/reconDB')
 
 module.exports.chatBot = require('./data/functions/chatBot')
+
+module.exports.hangman = require('./data/class/hangman')

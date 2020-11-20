@@ -1,5 +1,12 @@
 const mongoose = require('mongoose')
 class reconDB {
+    /**
+     * @name reconDB
+     * @kind constructor
+     * @param {Object} options options
+     * @param {String} [options.uri] mongodb connection string (required)
+     * @description Estabilishing an connection
+     */
     constructor(options) {
       mongoose.connect(options.uri, {
         useUnifiedTopology: true,

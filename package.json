@@ -1,11 +1,17 @@
 {
   "name": "reconlx",
-  "version": "1.0.21",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "reconlx",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.4.1",
+    "jsdom": "^16.4.0",
+    "mongoose": "^5.10.15",
+    "ms": "^2.1.2"
+  }
 }

@@ -34,6 +34,7 @@ $ npm install reconlx
 + [fetchTranscript](https://www.npmjs.com/package/reconlx#fetchtranscript) - Specify an amount of messages and it will return a discord chat template with messages, acts like a transcript.
 + [timeout](https://www.npmjs.com/package/reconlx#timeout) - Makes it easier to delete messages according to your needs
 + [chatBot](https://www.npmjs.com/package/reconlx#chatbot) - Replies to your messages in discord.
++[hangman](https://www.npmjs.com/package/reconlx#chatbot) - Hangman game now playable in discord.
 ## ✈ Importing
 
 ```javascript
@@ -85,6 +86,8 @@ const pages = [
     embed1,
     embed2
 ]
+// Change pages when sending numbers.
+const textPageChange = true;
 // Create an emojilist, first emoji being page back and second emoji being page front. Defaults are set to  ['⏪', '⏩'].
 const emojis = [
     "⏪",
@@ -93,7 +96,7 @@ const emojis = [
 // Define a time in ms, defaults are set to 60000ms which is 60 seconds. Time on how long you want the embed to be interactable
 const time = 30000
 // Call the EmbedPages method, use the <message> parameter to initialize it.
-EmbedPages(msg, pages, emojis, time);
+EmbedPages(msg, pages, textPageChange, emojis, time); 
 //There you go, now you have embed pages.
 ```
 #### Preview on a music list : 
@@ -184,6 +187,39 @@ const { chatBot } = require('reconlx')
 
 ### Preview
 ![preview](https://imgur.com/DeThtZJ.png)
+
+---
+
+## hangman
+```js
+const { hangman } = require('reconlx')
+
+// parameters
+    /**
+     * @name hangman
+     * @param {Object} options options
+     * @param {String} [options.channelID] channel to send to (channel.id)
+     * @param {any} [options.message] parameter used for message event
+     * @param {String} [options.permission] required permission to use this command (optional); default set to everyone.
+     * @param {String} [options.word] word that needed to be guessed
+     * @param {any} [options.client] client used to defined Discord.Client
+     */
+
+    // making hangman
+        const hang = new hangman({
+            message: message,
+            word:  args.slice(1).join(" "),
+            client: client,
+            channelID: message.mentions.channels.first()
+        })
+
+    // starting the game
+        hang.start()
+```
+
+
+###  Preview 
+![preview](https://imgur.com/GSRHlRr.png)
 
 ---
 ---
