@@ -171,7 +171,7 @@ class hangman {
             }
           });
           if(this.permission) {
-              if(this.message.member.hasPermission(this.permission)) return this.message.reply(`You need ${this.permission} permission to use this command.`);
+              if(!this.message.member.hasPermission(this.permission)) return this.message.reply(`You need ${this.permission} permission to use this command.`);
               this.channel.send(stages[0]).then((m) => {
                   nextLetter(m, 0, this.word);
               })

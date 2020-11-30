@@ -13,3 +13,5 @@ module.exports.reconDB = require('./data/db/reconDB')
 module.exports.chatBot = require('./data/functions/chatBot')
 
 module.exports.hangman = require('./data/class/hangman')
+
+module.exports.tictactoe = require('./data/class/tictactoe/tictactoe')

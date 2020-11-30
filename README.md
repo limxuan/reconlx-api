@@ -34,7 +34,8 @@ $ npm install reconlx
 + [fetchTranscript](https://www.npmjs.com/package/reconlx#fetchtranscript) - Specify an amount of messages and it will return a discord chat template with messages, acts like a transcript.
 + [timeout](https://www.npmjs.com/package/reconlx#timeout) - Makes it easier to delete messages according to your needs
 + [chatBot](https://www.npmjs.com/package/reconlx#chatbot) - Replies to your messages in discord.
-+[hangman](https://www.npmjs.com/package/reconlx#chatbot) - Hangman game now playable in discord.
++ [hangman](https://www.npmjs.com/package/reconlx#hangman) - Hangman game now playable in discord.
++ [tictactoe](https://www.npmjs.com/package/reconlx#tictactoe) - TicTacToe game now playable in discord.
 ## ✈ Importing
 
 ```javascript
@@ -111,7 +112,7 @@ const { confirmation } = require('reconlx')
 // Here is an example on using it in banning members.
 message.channel.send('Confirmation for banning members').then(async msg => {
   // parameters used(which msg to react on, who can acess it, reactions, time(optional))
-  const emoji = confirmation(msg, message.author, ['✅', '❌'], 30000)
+  const emoji = await confirmation(msg, message.author, ['✅', '❌'], 30000)
   if(emoji === '✅') { //if author reacts on check
     //delete the confirmation message
     msg.delete()
@@ -192,6 +193,7 @@ const { chatBot } = require('reconlx')
 
 ## hangman
 ```js
+//importing
 const { hangman } = require('reconlx')
 
 // parameters
@@ -220,6 +222,32 @@ const { hangman } = require('reconlx')
 
 ###  Preview 
 ![preview](https://imgur.com/GSRHlRr.png)
+
+## tictactoe
+```js
+//importing
+const { tictactoe } = require('reconlx')
+
+// parameters
+      /**
+     * @name tictactoe
+     * @param {Object} options options
+     * @param {any} [options.message] parameter used for message event
+     * @param {any} [options.player_two] second player in the game.
+     */
+
+    // start the game
+
+    var game = new tictactoe({
+      message: message,
+      player_two : message.mentions.members.first()
+    })
+
+```
+
+
+### Preview
+![preview](https://imgur.com/lxKhF1b.png)
 
 ---
 ---
