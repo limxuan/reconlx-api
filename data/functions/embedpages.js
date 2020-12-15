@@ -36,8 +36,8 @@ async function EmbedPages(message, pages, pageTravel = false, emoji = ['âª', 'â
         if(pageTravel === true) {
             message.channel.createMessageCollector(x => x.author.id === message.author.id, {time : time, errors : ['time']}).on('collect', async(data) => {
                 const a = data.content;
-                data.delete()
                 if(isNaN(a)) return;
+                data.delete()
                 const b = parseInt(a);
                 if(b > 0 && b - 1 <=  pages.length) {
                     i = b -1
