@@ -29,7 +29,7 @@ $ npm install reconlx
 ## 🛠 Usages (Click on it for more info on how to use it)
 + [reconDB](https://www.npmjs.com/package/reconlx#recondb) - simple way to store data into mongodb
 + [DaysAgo](https://www.npmjs.com/package/reconlx#daysago) - check how many days ago was it using date format
-+ [EmbedPages](https://www.npmjs.com/package/reconlx#embedpages) - simple pagination to make your "MessageEmbed" interactable.
++ [ReactionPages](https://www.npmjs.com/package/reconlx#ReactionPages) - simple pagination to make your "MessageEmbed" interactable.
 + [Confirmation](https://www.npmjs.com/package/reconlx#confirmation) - A reaction collector which returns the first emoji collected, can be used as a confirmation prompt.
 + [fetchTranscript](https://www.npmjs.com/package/reconlx#fetchtranscript) - Specify an amount of messages and it will return a discord chat template with messages, acts like a transcript.
 + [timeout](https://www.npmjs.com/package/reconlx#timeout) - Makes it easier to delete messages according to your needs
@@ -69,14 +69,14 @@ client.on('guildMemberAdd', async(member) => {
 })
 ```
 
-## EmbedPages
+## ReactionPages
 #### Example : 
 ```js
 // Example on checking how long the member's account was created.
 // Import the package
 const recon = require('reconlx')
 // Destructure the package
-const EmbedPages = recon.EmbedPages
+const ReactionPages = recon.ReactionPages
 // Use either MessageEmbed or RichEmbed to make pages
 // Keep in mind that Embeds should't have their footers set since the pagination method sets page info there
 const { MessageEmbed } = require('discord.js');
@@ -96,8 +96,8 @@ const emojis = [
 ]
 // Define a time in ms, defaults are set to 60000ms which is 60 seconds. Time on how long you want the embed to be interactable
 const time = 30000
-// Call the EmbedPages method, use the <message> parameter to initialize it.
-EmbedPages(msg, pages, textPageChange, emojis, time); 
+// Call the ReactionPages method, use the <message> parameter to initialize it.
+ReactionPages(msg, pages, textPageChange, emojis, time); 
 //There you go, now you have embed pages.
 ```
 #### Preview on a music list : 

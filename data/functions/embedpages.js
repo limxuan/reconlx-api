@@ -8,7 +8,7 @@ async function EmbedPages(message, pages, pageTravel = false, emoji = ['âª', 'â
     if(!time) throw new ReferenceError('reconlx => "time" is not defined')
     if(typeof time !== "number") throw new ReferenceError('reconlx => typeof "time" must be a number')
     if(message.guild.me.hasPermission('MANAGE_MESSAGES')) {
-        message.channel.send(pages[0].setFooter(`Page 1 / ${pages.length}`)).then(async msg => {
+        message.channel.send(pages[0]).then(async msg => {
             const ms1 = await message.channel.send(`Page 1 / ${pages.length}`)
             await msg.react(emoji[0])
             await msg.react(emoji[1])
@@ -31,7 +31,7 @@ async function EmbedPages(message, pages, pageTravel = false, emoji = ['âª', 'â
                     ms1.edit(`Page ${i + 1} / ${pages.length}`)
                     break;
             }
-            await msg.edit(pages[i + 1])})
+            await msg.edit(pages[i])})
         collector.on('end', () => msg.reactions.removeAll());
         if(pageTravel === true) {
             message.channel.createMessageCollector(x => x.author.id === message.author.id, {time : time, errors : ['time']}).on('collect', async(data) => {
