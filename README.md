@@ -137,11 +137,17 @@ const { fetchTransript } = require('reconlx')
 // template
 // fetchTranscript(message: any, numberOfMessages: number, sendToAuthor: boolean)
 
+// returns buffer
+
 //example
 module.exports = {
   name : 'transcript',
   run : async(client, message) => {
-    fetchTranscript(message, 5, true)
+    fetchTranscript(message, 5)
+            .then(data => {
+                const file = new MessageAttachment(data, 'index.html');
+                message.channel.send(file)
+            })
   }
 }
 // it will fetch 10 messages in {message} channel and the transcript will be sent to the author
