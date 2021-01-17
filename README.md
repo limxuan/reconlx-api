@@ -150,7 +150,7 @@ module.exports = {
             })
   }
 }
-// it will fetch 10 messages in {message} channel and the transcript will be sent to the author
+// it will fetch 5 messages in the current channel.
 ```
 ### Preview on a general chat
 ![preview](https://i.imgur.com/CB1a6eD.png)

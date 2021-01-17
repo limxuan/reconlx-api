@@ -5,7 +5,7 @@ async function chatBot(message, input) {
     fetch(`https://bruhapi.xyz/cb/${input}`)
         .then(res => res.json())
         .then(async json => {
-            return message.reply(json.response)
+            return message.reply(json.res)
         })
 }
 module.exports = chatBot;

@@ -1,9 +1,8 @@
 {
   "name": "reconlx",
-  "version": "1.0.7",
+  "version": "1.0.73",
   "description": "",
   "main": "index.js",
-  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
