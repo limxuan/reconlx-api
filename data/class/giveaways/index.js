@@ -31,8 +31,8 @@ class GiveawayClient {
         );
       mongoose.connect(options.mongoURI);
     }
-    this.emoji = options?.emoji || "🎉";
-    this.defaultColor = options?.defaultColor || "FF0000";
+    this.emoji = options.emoji || "🎉";
+    this.defaultColor = options.defaultColor || "FF0000";
     this.client.on("ready", () => this.ready());
   }
   /**
