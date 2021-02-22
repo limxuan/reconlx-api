@@ -25,7 +25,7 @@ class GiveawayClient {
     this.client = client;
     this.collection = new Collection();
     if (mongoose.connection.readyState !== 1) {
-      if (!options?.mongoURI)
+      if (!options.mongoURI)
         throw new Error(
           "There is no established  connection with mongoose and a mongoose connection is required!"
         );
