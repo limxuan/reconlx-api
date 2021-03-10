@@ -16,7 +16,9 @@ class reconDB {
                 throw new Error(
                     "There is no established  connection with mongoose and a mongoose connection is required!"
                 );
-            mongoose.connect(options.uri);
+            mongoose.connect(options.uri, {
+                useUnifiedTopology: true,
+            });
         }
         this.model = require(require("path").join(__dirname, "schema.js"));
         this.dbCollection = new Collection();
@@ -25,7 +27,7 @@ class reconDB {
     ready() {
         this.model.find().then((data) => {
             data.forEach((value) => {
-                this.dbCollection.set(value.key, value);
+                this.dbCollection.set(value.key, value.value);
             });
         });
     }
