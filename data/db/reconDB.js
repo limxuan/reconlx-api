@@ -11,12 +11,13 @@ class reconDB {
      */
     constructor(client, options) {
         this.client = client;
-        mongoose
-            .connect(options.uri, {
-                useUnifiedTopology: true,
-                useNewUrlParser: true,
-            })
-            .then(console.log("Connected to recon.db ✅"));
+        if (mongoose.connection.readyState !== 1) {
+            if (!options.uri)
+                throw new Error(
+                    "There is no established  connection with mongoose and a mongoose connection is required!"
+                );
+            mongoose.connect(options.mongoURI);
+        }
         this.model = require(require("path").join(__dirname, "schema.js"));
         this.dbCollection = new Collection();
         this.client.on("ready", () => this.ready());
