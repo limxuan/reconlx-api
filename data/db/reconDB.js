@@ -16,7 +16,7 @@ class reconDB {
                 throw new Error(
                     "There is no established  connection with mongoose and a mongoose connection is required!"
                 );
-            mongoose.connect(options.mongoURI);
+            mongoose.connect(options.uri);
         }
         this.model = require(require("path").join(__dirname, "schema.js"));
         this.dbCollection = new Collection();
