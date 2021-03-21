@@ -17,3 +17,5 @@ module.exports.hangman = require("./data/class/hangman");
 module.exports.tictactoe = require("./data/class/tictactoe/tictactoe");
 
 module.exports.GiveawayClient = require("./data/class/giveaways");
+
+module.exports.SnakeCord = require("./data/class/snakecord");

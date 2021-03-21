@@ -13,11 +13,11 @@ A simple api to configure and enhance the ways on coding your discord bot. Compa
 
 # 📝 Table of contents
 
-- [Installation](https://www.npmjs.com/package/reconlx#installation)
-- [Usages](https://www.npmjs.com/package/reconlx#-usages-click-on-it-for-more-info-on-how-to-use-it)
-- [Importing](https://www.npmjs.com/package/reconlx#-importing)
-- [Support](https://www.npmjs.com/package/reconlx#%E2%99%82%EF%B8%8F-support)
-- [License](https://apache.org/licenses/LICENSE-2.0.html)
+-   [Installation](https://www.npmjs.com/package/reconlx#installation)
+-   [Usages](https://www.npmjs.com/package/reconlx#-usages-click-on-it-for-more-info-on-how-to-use-it)
+-   [Importing](https://www.npmjs.com/package/reconlx#-importing)
+-   [Support](https://www.npmjs.com/package/reconlx#%E2%99%82%EF%B8%8F-support)
+-   [License](https://apache.org/licenses/LICENSE-2.0.html)
 
 ---
 
@@ -31,16 +31,17 @@ $ npm install reconlx
 
 ## 🛠 Usages (Click on it for more info on how to use it)
 
-- [reconDB](https://www.npmjs.com/package/reconlx#recondb) - simple way to store data into mongodb
-- [DaysAgo](https://www.npmjs.com/package/reconlx#daysago) - check how many days ago was it using date format
-- [ReactionPages](https://www.npmjs.com/package/reconlx#ReactionPages) - simple pagination to make your "MessageEmbed" interactable.
-- [Confirmation](https://www.npmjs.com/package/reconlx#confirmation) - A reaction collector which returns the first emoji collected, can be used as a confirmation prompt.
-- [fetchTranscript](https://www.npmjs.com/package/reconlx#fetchtranscript) - Specify an amount of messages and it will return a discord chat template with messages, acts like a transcript.
-- [timeout](https://www.npmjs.com/package/reconlx#timeout) - Makes it easier to delete messages according to your needs
-- [chatBot](https://www.npmjs.com/package/reconlx#chatbot) - Replies to your messages in discord.
-- [hangman](https://www.npmjs.com/package/reconlx#hangman) - Hangman game now playable in discord.
-- [tictactoe](https://www.npmjs.com/package/reconlx#tictactoe) - TicTacToe game now playable in discord.
-- [GiveawayClient](https://www.npmjs.com/package/reconlx#giveawayclient) - Giveaway Client, easy way to manage your giveaways
+-   [reconDB](https://www.npmjs.com/package/reconlx#recondb) - simple way to store data into mongodb
+-   [DaysAgo](https://www.npmjs.com/package/reconlx#daysago) - check how many days ago was it using date format
+-   [ReactionPages](https://www.npmjs.com/package/reconlx#ReactionPages) - simple pagination to make your "MessageEmbed" interactable.
+-   [Confirmation](https://www.npmjs.com/package/reconlx#confirmation) - A reaction collector which returns the first emoji collected, can be used as a confirmation prompt.
+-   [fetchTranscript](https://www.npmjs.com/package/reconlx#fetchtranscript) - Specify an amount of messages and it will return a discord chat template with messages, acts like a transcript.
+-   [timeout](https://www.npmjs.com/package/reconlx#timeout) - Makes it easier to delete messages according to your needs
+-   [chatBot](https://www.npmjs.com/package/reconlx#chatbot) - Replies to your messages in discord.
+-   [hangman](https://www.npmjs.com/package/reconlx#hangman) - Hangman game now playable in discord.
+-   [tictactoe](https://www.npmjs.com/package/reconlx#tictactoe) - TicTacToe game now playable in discord.
+-   [GiveawayClient](https://www.npmjs.com/package/reconlx#giveawayclient) - Giveaway Client, easy way to manage your giveaways
+-   [SnakeCord](https://npm.im/snakecord) - Snakecord with some minor error fixes as the mantainer isn't reading prs.
 
 ## ✈ Importing
 
@@ -73,7 +74,7 @@ const daysAgo = recon.daysAgo;
 const discord = require("discord.js");
 
 client.on("guildMemberAdd", async (member) => {
-  console.log(daysAgo(member.user.createdAt)); // return days.
+    console.log(daysAgo(member.user.createdAt)); // return days.
 });
 ```
 
@@ -118,20 +119,20 @@ ReactionPages(msg, pages, textPageChange, emojis, time);
 const { confirmation } = require("reconlx");
 // Here is an example on using it in banning members.
 message.channel.send("Confirmation for banning members").then(async (msg) => {
-  // parameters used(which msg to react on, who can acess it, reactions, time(optional))
-  const emoji = await confirmation(msg, message.author, ["✅", "❌"], 30000);
-  if (emoji === "✅") {
-    //if author reacts on check
-    //delete the confirmation message
-    msg.delete();
-    //ban the member
-    guildMember.ban();
-  }
-  if (emoji === "❌") {
-    // if author reacts on cross
-    // delete the confirmation message
-    msg.delete();
-  }
+    // parameters used(which msg to react on, who can acess it, reactions, time(optional))
+    const emoji = await confirmation(msg, message.author, ["✅", "❌"], 30000);
+    if (emoji === "✅") {
+        //if author reacts on check
+        //delete the confirmation message
+        msg.delete();
+        //ban the member
+        guildMember.ban();
+    }
+    if (emoji === "❌") {
+        // if author reacts on cross
+        // delete the confirmation message
+        msg.delete();
+    }
 });
 ```
 
@@ -152,13 +153,13 @@ const { fetchTransript } = require("reconlx");
 
 //example
 module.exports = {
-  name: "transcript",
-  run: async (client, message) => {
-    fetchTranscript(message, 5).then((data) => {
-      const file = new MessageAttachment(data, "index.html");
-      message.channel.send(file);
-    });
-  },
+    name: "transcript",
+    run: async (client, message) => {
+        fetchTranscript(message, 5).then((data) => {
+            const file = new MessageAttachment(data, "index.html");
+            message.channel.send(file);
+        });
+    },
 };
 // it will fetch 5 messages in the current channel.
 ```
@@ -230,10 +231,10 @@ const { hangman } = require("reconlx");
 
 // making hangman
 const hang = new hangman({
-  message: message,
-  word: args.slice(1).join(" "),
-  client: client,
-  channelID: message.mentions.channels.first(),
+    message: message,
+    word: args.slice(1).join(" "),
+    client: client,
+    channelID: message.mentions.channels.first(),
 });
 
 // starting the game
@@ -261,8 +262,8 @@ const { tictactoe } = require("reconlx");
 // start the game
 
 var game = new tictactoe({
-  message: message,
-  player_two: message.mentions.members.first(),
+    message: message,
+    player_two: message.mentions.members.first(),
 });
 ```
 
@@ -290,7 +291,7 @@ import { reconDB } from "reconlx";
 
 ```js
 const db = new reconDB({
-  uri: "your mongodb connection string",
+    uri: "your mongodb connection string",
 });
 
 module.exports = db;
