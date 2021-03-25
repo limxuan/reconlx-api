@@ -70,7 +70,7 @@ Feel free to join the support discord server -> https://discord.gg/xCCpfth
 // Import the package
 const recon = require("reconlx");
 // Destructure the package
-const daysAgo = recon.daysAgo;
+const daysAgo = recon.DaysAgo;
 const discord = require("discord.js");
 
 client.on("guildMemberAdd", async (member) => {
