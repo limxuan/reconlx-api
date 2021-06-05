@@ -1,4 +1,4 @@
-async function chatBot(message, input, uuid = 0101) {
+async function chatBot(message, input, uuid) {
     if (!message)
         throw new ReferenceError('reconlx => "message" is not defined');
     if (!input) throw new ReferenceError('reconlx => "input" is not defined');
@@ -6,7 +6,7 @@ async function chatBot(message, input, uuid = 0101) {
     fetch(
         `https://api.monkedev.com/fun/chat?msg=${encodeURIComponent(
             input
-        )}&uid=${uuid}`
+        )}&uid=${uuid || message.author.id}`
     )
         .then((res) => res.json())
         .then(async (json) => {

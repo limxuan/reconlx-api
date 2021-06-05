@@ -18,6 +18,7 @@ class reconDB {
                 );
             mongoose.connect(options.uri, {
                 useUnifiedTopology: true,
+                useNewUrlParser: true,
             });
         }
         this.model = require(require("path").join(__dirname, "schema.js"));

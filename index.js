@@ -1,21 +1,23 @@
-module.exports.DaysAgo = require("./data/functions/DaysAgo");
+module.exports.DaysAgo = require("./src/functions/DaysAgo");
 
-module.exports.fetchTranscript = require("./data/functions/fetchTranscript/fetchTranscript");
+module.exports.fetchTranscript = require("./src/functions/fetchTranscript/fetchTranscript");
 
-module.exports.ReactionPages = require("./data/functions/embedpages");
+module.exports.ReactionPages = require("./src/functions/embedpages");
 
-module.exports.confirmation = require("./data/functions/confirmation");
+module.exports.confirmation = require("./src/functions/confirmation");
 
-module.exports.timeout = require("./data/functions/timeout");
+module.exports.timeout = require("./src/functions/timeout");
 
-module.exports.reconDB = require("./data/db/reconDB");
+module.exports.reconDB = require("./src/db/reconDB");
 
-module.exports.chatBot = require("./data/functions/chatBot");
+module.exports.oldReconDB = require("./src/db/oldReconDB");
 
-module.exports.hangman = require("./data/class/hangman");
+module.exports.chatBot = require("./src/functions/chatBot");
 
-module.exports.tictactoe = require("./data/class/tictactoe/tictactoe");
+module.exports.hangman = require("./src/class/hangman");
 
-module.exports.GiveawayClient = require("./data/class/giveaways");
+module.exports.tictactoe = require("./src/class/tictactoe/tictactoe");
 
-module.exports.SnakeCord = require("./data/class/snakecord");
+module.exports.GiveawayClient = require("./src/class/giveaways");
+
+module.exports.SnakeCord = require("./src/class/snakecord");
