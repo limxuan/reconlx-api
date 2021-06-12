@@ -35,8 +35,8 @@ export function ReactionPages(
     message: Message,
     pages: object,
     pageTravel: boolean,
-    emoji: string[] | undefined,
-    time: number | undefined
+    emoji?: string[],
+    time?: number
 );
 
 /**
@@ -49,7 +49,7 @@ export function ReactionPages(
 export function confirmation(
     message: Message,
     validReactions: object,
-    time: number | undefined
+    time?: number
 );
 
 /**
@@ -58,11 +58,7 @@ export function confirmation(
  * @param msgToDelete tobe-deleted Message Class (discord.js)
  * @param time Choose a time, default `10 seconds`
  */
-export function timeout(
-    message: Message,
-    msgToDelete: Message,
-    time: number | undefined
-);
+export function timeout(message: Message, msgToDelete: Message, time?: number);
 
 /**
  * @description Easy way to make a chatbot
@@ -70,11 +66,7 @@ export function timeout(
  * @param input The message you want to send to the chat bot
  * @param uuid A special id, default the author's id
  */
-export function chatBot(
-    message: Message,
-    input: string,
-    uuid: number | undefined
-): JSON;
+export function chatBot(message: Message, input: string, uuid?: number): JSON;
 
 interface hangmanOptions {
     channelID: string;
@@ -116,9 +108,9 @@ export class tictactoe {
 }
 
 interface giveawayClientOptions {
-    mongoURI: string | undefined;
-    emoji: string;
-    defaultColor: string;
+    mongoURI?: string;
+    emoji?: string;
+    defaultColor?: string;
 }
 interface startOptions {
     channel: TextChannel;
@@ -165,9 +157,9 @@ export class GiveawayClient {
      * @description Get data on current giveaways hosted by the bot
      */
     getCurrentGiveaways(
-        activatedOnly: boolean | undefined,
-        all: boolean | undefined,
-        message: Message
+        activatedOnly?: boolean,
+        all?: boolean,
+        message?: Message
     );
     /**
      * @method
@@ -175,7 +167,7 @@ export class GiveawayClient {
      * @param guildID guild id if value of `all` is `false`
      * @description Removes (activated = false) giveaways
      */
-    removeCachedGiveaways(all: boolean | undefined, guildID: string);
+    removeCachedGiveaways(all?: boolean, guildID?: string);
 }
 
 interface ordOptions {
