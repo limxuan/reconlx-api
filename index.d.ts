@@ -66,7 +66,7 @@ export function timeout(message: Message, msgToDelete: Message, time?: number);
  * @param input The message you want to send to the chat bot
  * @param uuid A special id, default the author's id
  */
-export function chatBot(message: Message, input: string, uuid?: number): JSON;
+export function chatBot(message: Message, input: string, uuid?: string): JSON;
 
 interface hangmanOptions {
     channelID: string;
