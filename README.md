@@ -112,7 +112,7 @@ ReactionPages(msg, pages, textPageChange, emojis, time);
 
 ---
 
-## confirmation
+## Confirmation
 
 ```js
 // destructure the package
