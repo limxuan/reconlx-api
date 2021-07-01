@@ -120,7 +120,7 @@ const { confirmation } = require("reconlx");
 // Here is an example on using it in banning members.
 message.channel.send("Confirmation for banning members").then(async (msg) => {
     // parameters used(which msg to react on, who can acess it, reactions, time(optional))
-    const emoji = await confirmation(msg, message.author, ["✅", "❌"], 30000);
+    const emoji = await confirmation(msg, ["✅", "❌"], 30000);
     if (emoji === "✅") {
         //if author reacts on check
         //delete the confirmation message
@@ -277,20 +277,20 @@ var game = new tictactoe({
 
 ---
 
-# reconDB
+# oldReconDB
 
 ## 1. Importing the package
 
 ```js
-const { reconDB } = require("reconlx");
+const { oldReconDB } = require("reconlx");
 // or
-import { reconDB } from "reconlx";
+import { oldReconDB } from "reconlx";
 ```
 
-## 2. Establishing and exporting reconDB
+## 2. Establishing and exporting oldReconDB
 
 ```js
-const db = new reconDB({
+const db = new oldReconDB({
     uri: "your mongodb connection string",
 });
 
@@ -300,7 +300,7 @@ module.exports = db;
 ## 3. Example on using it
 
 ```js
-const db = require("./db.js"); // replace db.js with your file path to the setup of reconDB
+const db = require("./db.js"); // replace db.js with the file path to oldReconDB
 
 db.set("numbers", "123");
 ```
@@ -336,6 +336,76 @@ db.delete("key");
 
 // checking for data
 db.has("key"); // returns => false
+```
+
+---
+
+# reconDB
+
+## 1. Importing the package
+
+```js
+const { reconDB } = require("reconlx");
+// or
+import { reconDB } from "reconlx";
+```
+
+## 2. Establishing and exporting reconDB
+
+```js
+const db = new reconDB(client, {
+    uri: "your mongodb connection string",
+});
+
+module.exports = db;
+```
+
+## 3. Example on using it
+
+```js
+const db = require("./db.js"); // replace db.js with the file path to reconDB
+
+db.set("numbers", "123");
+```
+
+## Methods
+
+### .set
+
+```js
+// saves data to database
+db.set("key", "value");
+```
+
+### .get
+
+```js
+// gets value from key
+db.get("key"); // returns => value
+```
+
+### .has
+
+```js
+// returns boolean
+db.has("key"); // returns => true
+```
+
+### .delete
+
+```js
+// deletes data
+db.delete("key");
+
+// checking for data
+db.has("key"); // returns => false
+```
+
+### .collection
+
+```js
+//returns the cached data
+console.log(reconDB.collection())
 ```
 
 ---
