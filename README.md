@@ -31,7 +31,8 @@ $ npm install reconlx
 
 ## 🛠 Usages (Click on it for more info on how to use it)
 
--   [reconDB](https://www.npmjs.com/package/reconlx#recondb) - simple way to store data into mongodb
+-   [oldReconDB](https://www.npmjs.com/package/reconlx#oldReconDB) - the old way of storing data in mongodb
+-   [reconDB](https://www.npmjs.com/package/reconlx/#reconDB) - the newest way of storing data in mongodb with cache
 -   [DaysAgo](https://www.npmjs.com/package/reconlx#daysago) - check how many days ago was it using date format
 -   [ReactionPages](https://www.npmjs.com/package/reconlx#ReactionPages) - simple pagination to make your "MessageEmbed" interactable.
 -   [Confirmation](https://www.npmjs.com/package/reconlx#confirmation) - A reaction collector which returns the first emoji collected, can be used as a confirmation prompt.
