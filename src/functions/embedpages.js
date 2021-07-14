@@ -1,5 +1,13 @@
-const { MessageEmbed } = require("discord.js");
+const { Message, MessageEmbed } = require("discord.js");
 
+/**
+ *
+ * @param {Message} message
+ * @param {*} pages
+ * @param {*} pageTravel
+ * @param {*} emoji
+ * @param {*} time
+ */
 async function EmbedPages(
     message,
     pages,
@@ -17,7 +25,7 @@ async function EmbedPages(
     if (typeof time !== "number")
         throw new ReferenceError('reconlx => typeof "time" must be a number');
     if (message.guild.me.permissions.has("MANAGE_MESSAGES")) {
-        message.channel.send(pages[0]).then(async (msg) => {
+        message.channel.send({ embeds: [pages[0]] }).then(async (msg) => {
             const ms1 = await message.channel.send(`Page 1 / ${pages.length}`);
             await msg.react(emoji[0]);
             await msg.react(emoji[1]);
@@ -79,7 +87,7 @@ async function EmbedPages(
             return msg;
         });
     } else {
-        message.channel.send(pages[0]).then(async (msg) => {
+        message.channel.send({ embeds: [pages[0]] }).then(async (msg) => {
             const ms1 = await message.channel.send(`Page 1 / ${pages.length}`);
             await msg.react(emoji[0]);
             await msg.react(emoji[1]);
