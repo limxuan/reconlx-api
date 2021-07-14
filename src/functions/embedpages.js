@@ -52,7 +52,7 @@ async function EmbedPages(
                         ms1.edit(`Page ${i + 1} / ${pages.length}`);
                         break;
                 }
-                await msg.edit(pages[i]);
+                await msg.edit({ embeds: [pages[i]] });
             });
             collector.on("end", () => msg.reactions.removeAll());
             if (pageTravel === true) {
@@ -68,7 +68,7 @@ async function EmbedPages(
                         const b = parseInt(a);
                         if (b > 0 && b - 1 <= pages.length) {
                             i = b - 1;
-                            msg.edit(pages[b - 1]);
+                            msg.edit({ embeds: [pages[b - 1]] });
                             ms1.edit(`Page ${b} / ${pages.length}`);
                         }
                     });
@@ -113,7 +113,7 @@ async function EmbedPages(
                         i++;
                         break;
                 }
-                msg.edit(pages[b - 1]);
+                msg.edit({ embeds: [pages[b - 1]] });
             });
             collector.on("end", () => msg.reactions.removeAll());
             if (pageTravel === true) {
@@ -128,7 +128,7 @@ async function EmbedPages(
                         const b = parseInt(a);
                         if (b > 0 && b - 1 <= pages.length) {
                             i = b - 1;
-                            msg.edit(pages[b - 1]);
+                            msg.edit({ embeds: [pages[b - 1]] });
                             ms1.edit(`Page ${b} / ${pages.length}`);
                         }
                     })
