@@ -1,4 +1,4 @@
-const { Message, MessageEmbed } = require("discord.js");
+const { Message, MessageEmbed, Permissions } = require("discord.js");
 
 /**
  *
@@ -24,7 +24,7 @@ async function EmbedPages(
     if (!time) throw new ReferenceError('reconlx => "time" is not defined');
     if (typeof time !== "number")
         throw new ReferenceError('reconlx => typeof "time" must be a number');
-    if (message.guild.me.permissions.has("MANAGE_MESSAGES")) {
+    if (message.guild.me.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
         message.channel.send({ embeds: [pages[0]] }).then(async (msg) => {
             const ms1 = await message.channel.send(`Page 1 / ${pages.length}`);
             await msg.react(emoji[0]);
@@ -34,9 +34,7 @@ async function EmbedPages(
                 emoji.includes(reaction.emoji.name) &&
                 user.id === message.author.id;
 
-            const collector = msg.createReactionCollector(filter, {
-                time: time,
-            });
+            const collector = msg.createReactionCollector({ filter, time });
             let i = 0;
             collector.on("collect", async (reaction, user) => {
                 reaction.users.remove(user);
@@ -56,10 +54,9 @@ async function EmbedPages(
             });
             collector.on("end", () => msg.reactions.removeAll());
             if (pageTravel === true) {
+                const filter = x => x.author.id === message.author.id;
                 message.channel
-                    .createMessageCollector(
-                        (x) => x.author.id === message.author.id,
-                        { time: time, errors: ["time"] }
+                    .createMessageCollector({ filter, time, errors: ["time"] }
                     )
                     .on("collect", async (data) => {
                         const a = data.content;
@@ -73,17 +70,6 @@ async function EmbedPages(
                         }
                     });
             }
-            // message.channel.awaitMessages(fil, {time : 60000, error: ['time']})
-            // .then(async (collected) => {
-            //     console.log(collected.first())
-            //     const a = collected.first()
-            //     if(isNaN(a)) return;
-            //     const b = parseInt(a);
-            //     if(b > 0 && b - 1 <=  pages.length) {
-            //         i = b -1
-            //         msg.edit(pages[b -1])
-            //     }
-            // })
             return msg;
         });
     } else {
@@ -96,9 +82,7 @@ async function EmbedPages(
                 emoji.includes(reaction.emoji.name) &&
                 user.id === message.author.id;
 
-            const collector = msg.createReactionCollector(filter, {
-                time: time,
-            });
+            const collector = msg.createReactionCollector({ filter, time });
             let i = 0;
             collector.on("collect", (reaction, user) => {
                 switch (reaction.emoji.name) {
@@ -117,10 +101,9 @@ async function EmbedPages(
             });
             collector.on("end", () => msg.reactions.removeAll());
             if (pageTravel === true) {
+                const filter = x => x.author.id === message.author.id;
                 message.channel
-                    .createMessageCollector(
-                        (x) => x.author.id === message.author.id,
-                        { time: time, errors: ["time"] }
+                    .createMessageCollector({ filter, time, errors: ["time"] }
                     )
                     .on("collect", async (data) => {
                         const a = data.content;

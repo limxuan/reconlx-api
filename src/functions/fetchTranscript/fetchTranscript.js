@@ -21,7 +21,7 @@ async function fetchTranscript(message, numberOfMessages) {
         if(channelMessages)
             messageCollection = messageCollection.concat(channelMessages);
     }
-    let msgs = messageCollection.array().reverse();
+    let msgs = [...messageCollection].reverse();
     return new Promise(async(ful) => {
         await fs.readFile(require('path').join(__dirname, 'template.html'), 'utf8', async function(err, data) {
             if(data) {

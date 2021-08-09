@@ -9,7 +9,7 @@
     "author": "reconlx",
     "license": "ISC",
     "dependencies": {
-        "discord.js": "^13.0.0-dev.98c6078.1626221017",
+        "discord.js": "^13.0.1",
         "jsdom": "^16.4.0",
         "mongoose": "^5.10.15",
         "ms": "^2.1.2"
