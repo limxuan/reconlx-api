@@ -10,6 +10,9 @@
         "url": "https://github.com/reconlx/reconlx-api"
     },
     "homepage": "https://reconlx.github.io/reconlx-api/",
+    "engines": {
+        "node": ">=16.6.0"
+    },
     "scripts": {
         "build": "tsc",
         "docs": "npx typedoc src/index.ts"
