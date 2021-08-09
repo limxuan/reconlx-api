@@ -1,3 +1,5 @@
+const { Permissions } = require('discord.js');
+
 async function confirmation(message, validReactions, time = 60000) {
     if (!message)
         throw new ReferenceError('reconlx => "message" is not defined');
@@ -19,7 +21,7 @@ async function confirmation(message, validReactions, time = 60000) {
         user.id === message.author.id;
 
     return message
-        .awaitReactions(filter, { max: 1, time: time })
+        .awaitReactions({ filter, max: 1, time: time })
         .then((collected) => collected.first() && collected.first().emoji.name);
 }
 

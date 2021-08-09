@@ -77,7 +77,7 @@ class SnakeGame {
 
         if (this.options.timestamp) embed.setTimestamp();
 
-        msg.channel.send({ embed }).then((emsg) => {
+        msg.channel.send({ embeds: [embed] }).then((emsg) => {
             this.gameEmbed = emsg;
             this.gameEmbed.react("⬅️");
             this.gameEmbed.react("⬆️");
@@ -102,7 +102,7 @@ class SnakeGame {
 
         if (this.options.timestamp) editEmbed.setTimestamp();
 
-        this.gameEmbed.edit(editEmbed);
+        this.gameEmbed.edit({ embeds: [editEmbed] });
 
         this.waitForReaction();
     }
@@ -115,7 +115,7 @@ class SnakeGame {
             .setDescription("SCORE: " + this.score);
 
         if (this.options.timestamp) editEmbed.setTimestamp();
-        this.gameEmbed.edit(editEmbed);
+        this.gameEmbed.edit({ embeds: [editEmbed] });
 
         this.gameEmbed.reactions.removeAll();
     }
@@ -128,12 +128,9 @@ class SnakeGame {
     }
 
     waitForReaction() {
+        const filter = (reaction, user) => this.filter(reaction.user);
         this.gameEmbed
-            .awaitReactions((reaction, user) => this.filter(reaction, user), {
-                max: 1,
-                time: 60000,
-                errors: ["time"],
-            })
+            .awaitReactions({ filter, max: 1, time: 60000, errors: ["time"] })
             .then((collected) => {
                 const reaction = collected.first();
 

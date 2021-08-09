@@ -186,6 +186,7 @@ class hangman {
                 }
             });
         }
+        // TODO: I'm way too lazy to change this, but WHY THE FUCK IS THIS AN EVENT LISTENER?!
         this.client.on("messageReactionAdd", (reaction, user) => {
             var msg = reaction.message;
             if (!user.bot) {

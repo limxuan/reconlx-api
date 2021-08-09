@@ -67,7 +67,7 @@ class GiveawayClient {
             .setColor(this.defaultColor)
             .setTimestamp();
 
-        channel.send({ embed }).then((msg) => {
+        channel.send({ embeds: [embed] }).then((msg) => {
             msg.react(this.emoji);
             const values = {
                 MessageID: msg.id,
@@ -125,9 +125,7 @@ class GiveawayClient {
                         data.Channel,
                         data.MessageID
                     );
-                    oldMessage.edit(
-                        new MessageEmbed().setTitle("Giveaway ended!")
-                    );
+                    oldMessage.edit({ embeds: [new MessageEmbed().setTitle("Giveaway ended!")] });
                 }
                 data.Activated = false;
                 data.save();
@@ -264,7 +262,7 @@ class GiveawayClient {
                     giveaway.Channel,
                     giveaway.MessageID
                 );
-                oldMessage.edit(new MessageEmbed().setTitle("Giveaway Ended!"));
+                oldMessage.edit({ embeds: [new MessageEmbed().setTitle("Giveaway Ended!")] });
                 this.collection.get(giveaway.MessageID).Activated = false;
                 const props = {
                     MessageID: giveaway.MessageID,

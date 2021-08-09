@@ -61,21 +61,19 @@ class Game {
                         );
                     }
                 }
+                const filter = (reaction, user) =>
+                    user.id == this.message.author.id &&
+                    (reaction.emoji.name == "1️⃣" ||
+                        reaction.emoji.name == "2️⃣" ||
+                        reaction.emoji.name == "3️⃣" ||
+                        reaction.emoji.name == "4️⃣" ||
+                        reaction.emoji.name == "5️⃣" ||
+                        reaction.emoji.name == "6️⃣" ||
+                        reaction.emoji.name == "7️⃣" ||
+                        reaction.emoji.name == "8️⃣" ||
+                        reaction.emoji.name == "9️⃣");
                 this.ttt_message
-                    .awaitReactions(
-                        (reaction, user) =>
-                            user.id == this.message.author.id &&
-                            (reaction.emoji.name == "1️⃣" ||
-                                reaction.emoji.name == "2️⃣" ||
-                                reaction.emoji.name == "3️⃣" ||
-                                reaction.emoji.name == "4️⃣" ||
-                                reaction.emoji.name == "5️⃣" ||
-                                reaction.emoji.name == "6️⃣" ||
-                                reaction.emoji.name == "7️⃣" ||
-                                reaction.emoji.name == "8️⃣" ||
-                                reaction.emoji.name == "9️⃣"),
-                        { max: 1, time: 3000000 }
-                    )
+                    .awaitReactions({ filter, max: 1, time: 3000000 })
                     .then(async (collected) => {
                         this.reaction = collected.first().emoji.name;
                         if (this.reaction == "1️⃣") this.user_input = 0;
@@ -117,21 +115,19 @@ class Game {
                     this.ttt_message.edit(
                         "<@" + this.player_two.id + "> it is your turn\n" + grid
                     );
+                    const filter = (reaction, user) =>
+                        user.id == this.player_two.id &&
+                        (reaction.emoji.name == "1️⃣" ||
+                            reaction.emoji.name == "2️⃣" ||
+                            reaction.emoji.name == "3️⃣" ||
+                            reaction.emoji.name == "4️⃣" ||
+                            reaction.emoji.name == "5️⃣" ||
+                            reaction.emoji.name == "6️⃣" ||
+                            reaction.emoji.name == "7️⃣" ||
+                            reaction.emoji.name == "8️⃣" ||
+                            reaction.emoji.name == "9️⃣");
                     this.ttt_message
-                        .awaitReactions(
-                            (reaction, user) =>
-                                user.id == this.player_two.id &&
-                                (reaction.emoji.name == "1️⃣" ||
-                                    reaction.emoji.name == "2️⃣" ||
-                                    reaction.emoji.name == "3️⃣" ||
-                                    reaction.emoji.name == "4️⃣" ||
-                                    reaction.emoji.name == "5️⃣" ||
-                                    reaction.emoji.name == "6️⃣" ||
-                                    reaction.emoji.name == "7️⃣" ||
-                                    reaction.emoji.name == "8️⃣" ||
-                                    reaction.emoji.name == "9️⃣"),
-                            { max: 1, time: 30000 }
-                        )
+                        .awaitReactions({ filter, max: 1, time: 30000 })
                         .then(async (collected) => {
                             this.reaction = collected.first().emoji.name;
                             if (this.reaction == "1️⃣") this.user_input = 0;
