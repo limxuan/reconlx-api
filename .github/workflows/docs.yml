@@ -26,10 +26,10 @@ jobs:
                   node-version: 14.x
 
             - name: Install the dependencies
-              run: yarn install --ignore-engines
+              run: npm install
 
             - name: Generate the documentation
-              run: yarn docs
+              run: npm run docs
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
