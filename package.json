@@ -1,6 +1,6 @@
 {
     "name": "reconlx",
-    "version": "1.1.0",
+    "version": "1.4.111",
     "main": "dist/index.js",
     "license": "MIT",
     "author": {
@@ -15,13 +15,17 @@
     },
     "scripts": {
         "build": "tsc",
-        "docs": "npx typedoc src/index.ts"
+        "docs": "npx typedoc src/index.ts --excludePrivate",
+        "test": "ts-node tests/index.ts"
     },
     "dependencies": {
         "discord.js": "^13.0.1",
+        "jsdom": "^16.7.0",
         "mongoose": "^5.13.5"
     },
     "devDependencies": {
+        "@types/jsdom": "^16.2.13",
+        "ts-node": "^10.2.0",
         "typedoc": "^0.21.2",
         "typescript": "^4.3.5"
     }
