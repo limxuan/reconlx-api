@@ -6,3 +6,5 @@ export {
     GiveawayClientSchema,
     StartOptions,
 } from "./giveaways";
+
+export { TranscriptOptions, generateTranscript, Message } from "./transcripts";
