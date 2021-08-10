@@ -1,6 +1,6 @@
 {
     "name": "reconlx",
-    "version": "1.4.111",
+    "version": "1.4.511",
     "main": "dist/index.js",
     "license": "MIT",
     "author": {
@@ -19,6 +19,7 @@
         "test": "ts-node tests/index.ts"
     },
     "dependencies": {
+        "axios": "^0.21.1",
         "discord.js": "^13.0.1",
         "jsdom": "^16.7.0",
         "mongoose": "^5.13.5"
