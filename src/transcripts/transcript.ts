@@ -1,6 +1,6 @@
 import { JSDOM } from "jsdom";
 import fs from "fs";
-import { TranscriptOptions } from "./transcript.interface";
+import { TranscriptOptions } from "./transcript.interfaces";
 import path from "path";
 import { BufferResolvable } from "discord.js";
 
