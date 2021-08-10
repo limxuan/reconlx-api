@@ -12,7 +12,7 @@ export interface PaginationOptions {
     embeds: MessageEmbed[];
 
     /**
-     * emoji unicode or a custom emoji's id
+     * customize your buttons!
      */
     button?: Button[];
 
