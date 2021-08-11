@@ -73,6 +73,18 @@ export class reconDB {
             if (err) throw err;
             if (data) await data.delete();
         });
+        this.dbCollection.delete(key);
+    }
+
+    /**
+     * @method
+     * @param key The key you wish to get data
+     * @description Gets data from the database with a key
+     * @example <reconDB>.get('key1')
+     */
+    public get(key): Promise<any> {
+        if (!key) return;
+        return this.dbCollection.get(key);
     }
 
     public collection(): Collection<string, any> {
