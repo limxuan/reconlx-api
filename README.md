@@ -21,3 +21,5 @@ A simple api to configure and enhance the ways on coding your discord bot. Compa
 -   [pagination](https://reconlx.github.io/reconlx-api/modules.html#pagination) - Easy and flexible way to paginate embeds with buttons!
 -   [generateTranscript](https://reconlx.github.io/reconlx-api/modules.html#generateTranscript) - Easily generate a discord like transcript with an array of _[messages](https://reconlx.github.io/reconlx-api/interfaces/Message.html)_
 -   [chatBot](https://reconlx.github.io/reconlx-api/modules.html#chatBot) - An easy chatbot without api key
+
+more features coming soon!
