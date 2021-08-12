@@ -143,10 +143,12 @@ export const pagination = async (options: PaginationOptions) => {
         pageTravelling.add(message.author.id);
 
         collector.on("collect", (message) => {
-            if (message.content.toLowerCase() === "end")
+            if (message.content.toLowerCase() === "end") {
+                message.delete().catch(() => {});
                 return collector.stop();
+            }
             const int = parseInt(message.content);
-            if (isNaN(int) || !(int < 10) || !(int >= 1)) return;
+            if (isNaN(int) || !(int < embeds.length) || !(int >= 1)) return;
             currentPage = int;
             initialMessage.edit({
                 embeds: [changeFooter()],
