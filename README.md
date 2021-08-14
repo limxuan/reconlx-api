@@ -17,7 +17,7 @@ A simple api to configure and enhance the ways on coding your discord bot. Compa
 ## 🛠 Usages (Click on it for more info on how to use it)
 
 -   [Giveaways](https://reconlx.github.io/reconlx-api/classes/GiveawayClient.html) - Easy giveaway system with mongodb as the database
--   [reconDB](https://reconlx.github.io/reconlx-api/classes/reconDB.html) - Storing data into mongodb with easy functions (`.get`, `.set`, `.delete`), data are cached for faster response times.
+-   [reconDB](https://reconlx.github.io/reconlx-api/classes/reconDB.html) - Storing data into mongodb with easy functions (`.get`, `.set`, `.delete`, `.push`), data are cached for faster response times.
 -   [pagination](https://reconlx.github.io/reconlx-api/modules.html#pagination) - Easy and flexible way to paginate embeds with buttons!
 -   [generateTranscript](https://reconlx.github.io/reconlx-api/modules.html#generateTranscript) - Easily generate a discord like transcript with an array of _[messages](https://reconlx.github.io/reconlx-api/interfaces/Message.html)_
 -   [chatBot](https://reconlx.github.io/reconlx-api/modules.html#chatBot) - An easy chatbot without api key
