@@ -1,5 +1,10 @@
 import mongoose, { Schema } from "mongoose";
-import { Client, Collection, VoiceBasedChannelTypes } from "discord.js";
+import {
+    Client,
+    Collection,
+    CommandInteractionOptionResolver,
+    VoiceBasedChannelTypes,
+} from "discord.js";
 
 export class reconDB {
     public schema = mongoose.model<reconDBSchema>(
@@ -35,7 +40,7 @@ export class reconDB {
     }
 
     private ready(): void {
-        this.schema.find().then((data) => {
+        this.schema.find({}).then((data) => {
             data.forEach(({ key, value }) => {
                 this.dbCollection.set(key, value);
             });
@@ -67,7 +72,7 @@ export class reconDB {
      * @description Removes data from mongodb
      * @example <reconDB>.delete("test")
      */
-    public delete(key) {
+    public delete(key: string) {
         if (!key) return;
         this.schema.findOne({ key }, async (err, data) => {
             if (err) throw err;
@@ -82,11 +87,34 @@ export class reconDB {
      * @description Gets data from the database with a key
      * @example <reconDB>.get('key1')
      */
-    public get(key): Promise<any> {
+    public get(key: string): any {
         if (!key) return;
         return this.dbCollection.get(key);
     }
 
+    /**
+     * @method
+     * @param key The key you wish to push data to
+     * @description Push data to the an array with a key
+     * @example
+     */
+    public push(key: string, ...pushValue: any) {
+        const data = this.dbCollection.get(key);
+        const values = pushValue.flat();
+        if (!Array.isArray(data))
+            throw Error(`You cant push data to a ${typeof data} value!`);
+
+        data.push(pushValue);
+        this.schema.findOne({ key }, async (err, res) => {
+            res.value = [...res.value, ...pushValue];
+            res.save();
+        });
+    }
+
+    /**
+     * @method
+     * @returns Cached data with discord.js collection
+     */
     public collection(): Collection<string, any> {
         return this.dbCollection;
     }
