@@ -1,10 +1,21 @@
-import { ButtonInteraction, Message, MessageEmbed } from "discord.js";
+import {
+    ButtonInteraction,
+    Message,
+    MessageEmbed,
+    TextChannel,
+    User,
+} from "discord.js";
 
 export interface PaginationOptions {
     /**
-     * discord.js message class
+     * TextChannel to send to
      */
-    message: Message;
+    channel: TextChannel;
+
+    /**
+     * Author's user class
+     */
+    author: User;
 
     /**
      * array of embed messages to paginate

@@ -26,7 +26,8 @@ const defaultStyles = {
 
 export const pagination = async (options: PaginationOptions) => {
     const {
-        message,
+        author,
+        channel,
         embeds,
         button,
         time,
@@ -100,14 +101,14 @@ export const pagination = async (options: PaginationOptions) => {
         return newEmbed.setFooter(`Page ${currentPage} of ${embeds.length}`);
     };
 
-    const initialMessage = await message.channel.send({
+    const initialMessage = await channel.send({
         embeds: [changeFooter()],
         components: components(),
     });
 
     const defaultFilter = (interaction: ButtonInteraction) => {
         if (!interaction.deferred) interaction.deferUpdate();
-        return interaction.user.id === message.author.id;
+        return interaction.user.id === author.id;
     };
 
     const filter = customFilter || defaultFilter;
@@ -124,23 +125,23 @@ export const pagination = async (options: PaginationOptions) => {
         return opt;
     };
 
-    const collector = message.channel.createMessageComponentCollector(
+    const collector = channel.createMessageComponentCollector(
         collectorOptions()
     );
 
     const pageTravelling = new Set();
 
     const numberTravel = async () => {
-        if (pageTravelling.has(message.author.id))
-            return message.channel.send("Type `end` to stop page travelling!");
-        const collector = message.channel.createMessageCollector({
-            filter: (msg) => msg.author.id === message.author.id,
+        if (pageTravelling.has(author.id))
+            return channel.send("Type `end` to stop page travelling!");
+        const collector = channel.createMessageCollector({
+            filter: (msg) => msg.author.id === author.id,
             time: 30000,
         });
-        const numberTravelMessage = await message.channel.send(
-            `${message.author.tag}, you have 30 seconds, send numbers in chat to change pages! Simply type \`end\` to exit from page travelling.`
+        const numberTravelMessage = await channel.send(
+            `${author.tag}, you have 30 seconds, send numbers in chat to change pages! Simply type \`end\` to exit from page travelling.`
         );
-        pageTravelling.add(message.author.id);
+        pageTravelling.add(author.id);
 
         collector.on("collect", (message) => {
             if (message.content.toLowerCase() === "end") {
@@ -160,7 +161,7 @@ export const pagination = async (options: PaginationOptions) => {
 
         collector.on("end", () => {
             if (numberTravelMessage.deletable) numberTravelMessage.delete();
-            pageTravelling.delete(message.author.id);
+            pageTravelling.delete(author.id);
         });
     };
 
