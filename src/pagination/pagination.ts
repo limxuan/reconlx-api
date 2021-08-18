@@ -174,6 +174,8 @@ export const pagination = async (options: PaginationOptions) => {
         if (id === "last") currentPage = embeds.length;
         if (id === "number") await numberTravel();
 
+        await interaction.deferUpdate();
+        
         initialMessage.edit({
             embeds: [changeFooter()],
             components: components(),
