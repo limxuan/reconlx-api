@@ -24,3 +24,5 @@ A simple api to configure and enhance the ways on coding your discord bot. Compa
 -   [chatBot](https://reconlx.github.io/reconlx-api/modules.html#chatBot) - An easy chatbot without api key
 
 more features coming soon!
+
+ps: if you are looking for the old features, use `npm i reconlx@version1` instead!
