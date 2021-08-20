@@ -20,5 +20,13 @@ export {
     pagination,
 } from "./pagination";
 
+// modmail
+export {
+    CloseMailSessionOptions,
+    ModMailClient,
+    ModMailModelOptions,
+    ModMailOptions,
+} from "./modmail";
+
 // functions
 export { chatBot, ChatBotOptions } from "./functions/chatBot";

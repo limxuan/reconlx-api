@@ -1,6 +1,6 @@
 {
     "name": "reconlx",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "main": "dist/index.js",
     "license": "MIT",
     "author": {
@@ -22,7 +22,8 @@
         "axios": "^0.21.1",
         "discord.js": "^13.0.1",
         "jsdom": "^16.7.0",
-        "mongoose": "^5.13.5"
+        "mongoose": "^5.13.5",
+        "sourcebin": "^4.2.5"
     },
     "devDependencies": {
         "@types/jsdom": "^16.2.13",
