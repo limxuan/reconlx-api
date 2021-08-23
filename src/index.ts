@@ -1,5 +1,5 @@
 // reconDB
-export { reconDB, reconDBOptions, reconDBSchema } from "./database/reconDB";
+export { reconDB, reconDBSchema } from "./database/reconDB";
 
 // giveaways
 export {

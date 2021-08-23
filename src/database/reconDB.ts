@@ -1,10 +1,9 @@
 import mongoose, { Schema } from "mongoose";
-import {
-    Client,
-    Collection,
-    CommandInteractionOptionResolver,
-    VoiceBasedChannelTypes,
-} from "discord.js";
+import { Client, Collection } from "discord.js";
+
+interface reconDBEvents {
+    ready: (reconDB: reconDB) => unknown;
+}
 
 export class reconDB {
     public schema = mongoose.model<reconDBSchema>(
@@ -23,24 +22,23 @@ export class reconDB {
      * @param {reconDBOptions} options options to use the database
      */
 
-    constructor(options: reconDBOptions) {
-        this.client = options.client;
+    constructor(mongooseConnectionString: string) {
         if (mongoose.connection.readyState !== 1) {
-            if (!options.mongooseConnectionString)
+            if (!mongooseConnectionString)
                 throw new Error(
                     "There is no established  connection with mongoose and a mongoose connection is required!"
                 );
 
-            mongoose.connect(options.mongooseConnectionString, {
+            mongoose.connect(mongooseConnectionString, {
                 useUnifiedTopology: true,
                 useNewUrlParser: true,
             });
         }
-        this.client.on("ready", () => this.ready());
+        this.ready();
     }
 
-    private ready(): void {
-        this.schema.find({}).then((data) => {
+    private async ready() {
+        await this.schema.find({}).then((data) => {
             data.forEach(({ key, value }) => {
                 this.dbCollection.set(key, value);
             });
@@ -106,7 +104,7 @@ export class reconDB {
 
         data.push(pushValue);
         this.schema.findOne({ key }, async (err, res) => {
-            res.value = [...res.value, ...pushValue];
+            res.value = [...res.value, ...values];
             res.save();
         });
     }
@@ -118,18 +116,6 @@ export class reconDB {
     public collection(): Collection<string, any> {
         return this.dbCollection;
     }
-}
-
-export interface reconDBOptions {
-    /**
-     * discord.js client
-     */
-    client: Client;
-
-    /**
-     * mongodb compass connection string
-     */
-    mongooseConnectionString: string;
 }
 
 export interface reconDBSchema {
