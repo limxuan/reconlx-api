@@ -14,7 +14,20 @@ import {
 } from "./giveaways.interfaces";
 
 export class GiveawayClient {
-    public schema = mongoose.model<GiveawayClientSchema>("reconlx-giveaways");
+    public schema = mongoose.model<GiveawayClientSchema>(
+        "reconlx-giveaways",
+        new mongoose.Schema({
+            MessageID: String,
+            EndsAt: Number,
+            Guild: String,
+            Channel: String,
+            winners: Number,
+            prize: String,
+            description: String,
+            hostedBy: String,
+            Activated: Boolean,
+        })
+    );
     public options: GiveawayClientOptions;
     public collection: Collection<string, GiveawayClientSchema> =
         new Collection();
