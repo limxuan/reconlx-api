@@ -19,6 +19,7 @@ A simple api to configure and enhance the ways on coding your discord bot. Compa
 -   [Giveaways](https://reconlx.github.io/reconlx-api/classes/GiveawayClient.html) - Easy giveaway system with mongodb as the database
 -   [reconDB](https://reconlx.github.io/reconlx-api/classes/reconDB.html) - Storing data into mongodb with easy functions (`.get`, `.set`, `.delete`, `.push`), data are cached for faster response times.
 -   [ModMail](https://reconlx.github.io/reconlx-api/classes/ModMailClient.html) - Easy way to setup a modmail with awesome customisations
+-   [starboard](https://reconlx.github.io/reconlx-api/modules.html#starboard) - A starboard system which doesn't fetch 100 messages everytime someone reacts lmfao
 -   [pagination](https://reconlx.github.io/reconlx-api/modules.html#pagination) - Easy and flexible way to paginate embeds with buttons!
 -   [generateTranscript](https://reconlx.github.io/reconlx-api/modules.html#generateTranscript) - Easily generate a discord like transcript with an array of _[messages](https://reconlx.github.io/reconlx-api/interfaces/Message.html)_
 -   [chatBot](https://reconlx.github.io/reconlx-api/modules.html#chatBot) - An easy chatbot without api key
