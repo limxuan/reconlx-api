@@ -24,7 +24,12 @@ export interface ChatBotOptions {
  */
 export const chatBot = (options: ChatBotOptions): Promise<string> => {
     const { message, input, uuid } = options;
-    const baseUrl = `https://api.monkedev.com/fun/chat`;
+    const baseUrl = `https://yourmommmaosamaobama.hisroyal123.repl.co`;
+    /*
+    add more options using this repl API
+    it has way more options, to check all options, would recommend seeing this readme -
+    https://npmjs.com/package/clever-chat
+    */
 
     return new Promise(async (ful, rej) => {
         try {
