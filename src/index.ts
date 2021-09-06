@@ -1,6 +1,3 @@
-import { version as v } from "../package.json";
-export const version = v;
-
 // reconDB
 export { reconDB, reconDBSchema } from "./database/reconDB";
 
