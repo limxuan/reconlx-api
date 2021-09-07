@@ -29,6 +29,7 @@ export class StarboardClient {
         guilds: {
             set: (StarboardGuilds: StarboardGuild[]) => {
                 this.guilds = StarboardGuilds;
+                this.cacheData();
             },
 
             add: (StarboardGuild: StarboardGuild) => {
@@ -37,6 +38,7 @@ export class StarboardClient {
                 );
 
                 this.guilds = [...filtered, StarboardGuild];
+                this.cacheData();
             },
         },
     };
@@ -114,11 +116,11 @@ export class StarboardClient {
 
         if (
             reaction.emoji.name !== "⭐" ||
-            reaction.count < this.getData(guildId).options.starCount
+            reaction.count < this.getData(guildId)?.options.starCount
         )
             return;
 
-        const data = this.cache.get(guildId);
+        const data = this.cache.get(guildId) || [];
         const starboardChannel = this.client.channels.cache.get(
             this.guilds.find((x) => x.id === guildId).options.starboardChannel
         ) as TextChannel;
