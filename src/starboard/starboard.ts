@@ -122,7 +122,7 @@ export class StarboardClient {
 
         const data = this.cache.get(guildId) || [];
         const starboardChannel = this.client.channels.cache.get(
-            this.guilds.find((x) => x.id === guildId).options.starboardChannel
+            this.guilds.find((x) => x.id === guildId)?.options.starboardChannel
         ) as TextChannel;
         const getMessage = data.find((x) => x.origin === id);
         const generateEdit = this.generateEdit(
@@ -131,7 +131,7 @@ export class StarboardClient {
         );
 
         const sendMessage = () => {
-            starboardChannel.send(generateEdit).then((m) => {
+            starboardChannel?.send(generateEdit).then((m) => {
                 this.cache.set(reaction.message.guildId, [
                     ...data,
                     { id: m.id, origin: reaction.message.id },
