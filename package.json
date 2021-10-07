@@ -21,13 +21,13 @@
     },
     "dependencies": {
         "axios": "^0.21.1",
-        "discord.js": "^13.0.1",
         "jsdom": "^16.7.0",
-        "mongoose": "^5.13.5",
         "sourcebin": "^4.2.5"
     },
     "devDependencies": {
         "@types/jsdom": "^16.2.13",
+        "discord.js": "^13.2.0",
+        "mongoose": "^6.0.9",
         "ts-node": "^10.2.0",
         "typedoc": "^0.21.2",
         "typescript": "^4.3.5"
