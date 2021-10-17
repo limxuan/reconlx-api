@@ -79,7 +79,7 @@ export const generateTranscript = (
                                         let img = document.createElement("img");
                                         img.setAttribute(
                                             "src",
-                                            msg.author.avatar
+                                            'https://cdn.discordapp.com/avatars/'+msg.author.id+"/"+msg.author.avatar+".png"
                                         );
                                         img.className = "avatar";
                                         avatarDiv.appendChild(img);
