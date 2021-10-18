@@ -29,10 +29,7 @@ export class reconDB {
                     "There is no established  connection with mongoose and a mongoose connection is required!"
                 );
 
-            mongoose.connect(mongooseConnectionString, {
-                useUnifiedTopology: true,
-                useNewUrlParser: true,
-            });
+            mongoose.connect(mongooseConnectionString);
         }
         this.ready();
     }

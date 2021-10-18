@@ -46,10 +46,7 @@ export class GiveawayClient {
                 throw new Error(
                     "There is no established  connection with mongoose and a mongoose connection is required!"
                 );
-            mongoose.connect(options.mongooseConnectionString, {
-                useUnifiedTopology: true,
-                useNewUrlParser: true,
-            });
+            mongoose.connect(options.mongooseConnectionString);
         }
         this.options = {
             client,
