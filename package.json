@@ -1,6 +1,6 @@
 {
     "name": "reconlx",
-    "version": "2.4.4",
+    "version": "2.4.5",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "license": "MIT",
@@ -16,7 +16,7 @@
     },
     "scripts": {
         "build": "tsc",
-        "docs": "npx typedoc src/index.ts --excludePrivate",
+        "docs": "typedoc src/index.ts --excludePrivate",
         "test": "ts-node tests/index.ts"
     },
     "dependencies": {

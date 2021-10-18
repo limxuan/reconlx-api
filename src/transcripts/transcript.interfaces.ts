@@ -1,6 +1,6 @@
 export interface Message {
     author: {
-        avatar: string;
+        displayAvatarURL(): string;
         tag: string;
     };
     createdAt: Date;

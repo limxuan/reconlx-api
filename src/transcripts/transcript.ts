@@ -79,7 +79,7 @@ export const generateTranscript = (
                                         let img = document.createElement("img");
                                         img.setAttribute(
                                             "src",
-                                            msg.author.avatar
+                                            msg.author.displayAvatarURL()
                                         );
                                         img.className = "avatar";
                                         avatarDiv.appendChild(img);
