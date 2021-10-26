@@ -31,7 +31,7 @@
     }
 
     body {
-        background-color: #36393e;
+        background-color: #2f3136;
         color: #dcddde;
         font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 16px;
@@ -55,9 +55,15 @@
         text-align: center;
     }
 
-    .parent-container {
+    .parent-container:nth-child(even) {
         padding: 25px;
         display: flex;
+        background-color: #36393f;
+    }
+    .parent-container:nth-child(odd) {
+        padding: 25px;
+        display: flex;
+        background-color: #2f3136;
     }
 
     .avatar {
