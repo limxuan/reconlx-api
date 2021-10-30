@@ -6,7 +6,7 @@ export {
     GiveawayClientOptions,
     GiveawayClientSchema,
     StartOptions,
-    GiveawayClient,
+    GiveawayClient
 } from "./giveaways";
 
 // transcript
@@ -17,7 +17,7 @@ export {
     Button,
     ButtonNames,
     PaginationOptions,
-    pagination,
+    pagination
 } from "./pagination";
 
 // modmail
@@ -25,7 +25,7 @@ export {
     CloseMailSessionOptions,
     ModMailClient,
     ModMailModelOptions,
-    ModMailOptions,
+    ModMailOptions
 } from "./modmail";
 
 // starboard
@@ -34,8 +34,16 @@ export {
     StarboardClientOptions,
     StarboardGuild,
     StarboardGuildOptions,
-    starMessageData,
+    starMessageData
 } from "./starboard";
 
 // functions
 export { chatBot, ChatBotOptions } from "./functions/chatBot";
+
+// structures
+export {
+    Command,
+    CommandOptions,
+    RunFunction,
+    RunOptions
+} from "./structures/command";
