@@ -149,7 +149,7 @@ export const pagination = async (options: PaginationOptions) => {
                 return collector.stop();
             }
             const int = parseInt(message.content);
-            if (isNaN(int) || !(int < embeds.length) || !(int >= 1)) return;
+            if (isNaN(int) || !(int <= embeds.length) || !(int >= 1)) return;
             currentPage = int;
             initialMessage.edit({
                 embeds: [changeFooter()],
