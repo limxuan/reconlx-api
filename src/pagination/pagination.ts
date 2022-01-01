@@ -93,12 +93,11 @@ export const pagination = async (options: PaginationOptions) => {
         const embed = embeds[currentPage - 1];
         const newEmbed = new MessageEmbed(embed);
         if (embed?.footer?.text) {
-            return newEmbed.setFooter(
-                `${embed.footer.text} - Page ${currentPage} of ${embeds.length}`,
-                embed.footer.iconURL
-            );
+            return newEmbed.setFooter({ text: `${embed.footer.text} - Page ${currentPage} of ${embeds.length}`, 
+            iconURL: embed.footer.iconURL 
+        });
         }
-        return newEmbed.setFooter(`Page ${currentPage} of ${embeds.length}`);
+        return newEmbed.setFooter({ text: `Page ${currentPage} of ${embeds.length}` });
     };
 
     const initialMessage = await channel.send({
