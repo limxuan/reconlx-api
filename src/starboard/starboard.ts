@@ -99,11 +99,7 @@ export class StarboardClient {
                     .setDescription(message.content)
                     .addField("Source", `[Jump!](${message.url})`)
                     .setImage(message.attachments.first()?.url || null)
-                    .setFooter(
-                        `${
-                            message.id
-                        } • ${message.createdAt.toLocaleDateString()}`
-                    ),
+                    .setFooter({ text: `${message.id} • ${message.createdAt.toLocaleDateString()}` }),
             ],
         };
     }

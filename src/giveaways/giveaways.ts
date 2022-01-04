@@ -85,7 +85,7 @@ export class GiveawayClient {
         const embed = new MessageEmbed()
             .setTitle(`${prize}`)
             .setDescription(desc.join("\n"))
-            .setFooter(`${winners} winner(s)`)
+            .setFooter({ text: `${winners} winner(s)` })
             .setColor(this.options.defaultColor)
             .setTimestamp();
 
