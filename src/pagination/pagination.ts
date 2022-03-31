@@ -3,8 +3,12 @@ import {
     MessageActionRow,
     MessageButton,
     MessageButtonStyleResolvable,
+    Message,
     MessageComponentType,
-    MessageEmbed
+    MessageEmbed,
+    MessageCollectorOptions,
+    InteractionCollector,
+    Interaction
 } from "discord.js"
 import { ButtonNames, PaginationOptions } from "./pagination.interfaces"
 
@@ -115,7 +119,11 @@ export const pagination = async (options: PaginationOptions) => {
 
     const filter = customFilter || defaultFilter
 
-    const collectorOptions = () => {
+    let message: Message
+    message.createMessageComponentCollector({ componentType: "BUTTON"})
+
+
+    const collectorOptions = (): any => {
         const opt = {
             filter,
             componentType: "BUTTON" as MessageComponentType
@@ -128,7 +136,7 @@ export const pagination = async (options: PaginationOptions) => {
     }
 
     const collector = channel.createMessageComponentCollector(
-        collectorOptions()
+        collectorOptions() 
     )
 
     const pageTravelling = new Set()

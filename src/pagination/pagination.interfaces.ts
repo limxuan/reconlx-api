@@ -1,6 +1,5 @@
 import {
     ButtonInteraction,
-    Message,
     MessageEmbed,
     TextChannel,
     User
