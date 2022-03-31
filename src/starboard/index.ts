@@ -1,7 +1,7 @@
-export { StarboardClient } from "./starboard";
+export { StarboardClient } from "./starboard"
 export {
     StarboardClientOptions,
     StarboardGuild,
     StarboardGuildOptions,
-    starMessageData,
-} from "./starboard.interfaces";
+    starMessageData
+} from "./starboard.interfaces"

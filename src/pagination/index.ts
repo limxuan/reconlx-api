@@ -1,6 +1,2 @@
-export { pagination } from "./pagination";
-export {
-    Button,
-    ButtonNames,
-    PaginationOptions,
-} from "./pagination.interfaces";
+export { pagination } from "./pagination"
+export { Button, ButtonNames, PaginationOptions } from "./pagination.interfaces"

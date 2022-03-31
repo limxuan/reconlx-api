@@ -1,21 +1,21 @@
-import { Message } from "discord.js";
-import axios from "axios";
+import { Message } from "discord.js"
+import axios from "axios"
 
 export interface ChatBotOptions {
     /**
      * discord.js message class
      */
-    message: Message;
+    message: Message
 
     /**
      * input for the chatBot
      */
-    input: string;
+    input: string
 
     /**
      * defaults to author's id
      */
-    uuid: string;
+    uuid: string
 }
 
 /**
@@ -23,8 +23,8 @@ export interface ChatBotOptions {
  * @description An easy chatbot without api key
  */
 export const chatBot = (options: ChatBotOptions): Promise<string> => {
-    const { message, input, uuid } = options;
-    const baseUrl = `https://api.monkedev.com/fun/chat`;
+    const { message, input, uuid } = options
+    const baseUrl = `https://api.monkedev.com/fun/chat`
 
     return new Promise(async (ful, rej) => {
         try {
@@ -32,13 +32,13 @@ export const chatBot = (options: ChatBotOptions): Promise<string> => {
                 `${baseUrl}?msg=${encodeURIComponent(input)}&uid=${
                     uuid || message.author.id
                 }`
-            );
+            )
 
-            if (!res.data) rej("an error occured!");
+            if (!res.data) rej("an error occured!")
 
-            ful(res.data);
+            ful(res.data)
         } catch (err) {
-            rej(err);
+            rej(err)
         }
-    });
-};
+    })
+}

@@ -1,2 +1,2 @@
-export { generateTranscript } from "./transcript";
-export { Message, TranscriptOptions } from "./transcript.interfaces";
+export { generateTranscript } from "./transcript"
+export { Message, TranscriptOptions } from "./transcript.interfaces"

@@ -1,5 +1,5 @@
 // reconDB
-export { reconDB, reconDBSchema } from "./database/reconDB";
+export { reconDB, reconDBSchema } from "./database/reconDB"
 
 // giveaways
 export {
@@ -7,10 +7,10 @@ export {
     GiveawayClientSchema,
     StartOptions,
     GiveawayClient
-} from "./giveaways";
+} from "./giveaways"
 
 // transcript
-export { generateTranscript, TranscriptOptions, Message } from "./transcripts";
+export { generateTranscript, TranscriptOptions, Message } from "./transcripts"
 
 // pagination
 export {
@@ -18,7 +18,7 @@ export {
     ButtonNames,
     PaginationOptions,
     pagination
-} from "./pagination";
+} from "./pagination"
 
 // modmail
 export {
@@ -26,7 +26,7 @@ export {
     ModMailClient,
     ModMailModelOptions,
     ModMailOptions
-} from "./modmail";
+} from "./modmail"
 
 // starboard
 export {
@@ -35,10 +35,10 @@ export {
     StarboardGuild,
     StarboardGuildOptions,
     starMessageData
-} from "./starboard";
+} from "./starboard"
 
 // functions
-export { chatBot, ChatBotOptions } from "./functions/chatBot";
+export { chatBot, ChatBotOptions } from "./functions/chatBot"
 
 // structures
 export {
@@ -46,4 +46,4 @@ export {
     CommandOptions,
     RunFunction,
     RunOptions
-} from "./structures/command";
+} from "./structures/command"

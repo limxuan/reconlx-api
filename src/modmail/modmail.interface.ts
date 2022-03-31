@@ -5,41 +5,41 @@ import {
     MessageOptions,
     MessagePayload,
     Snowflake,
-    User,
-} from "discord.js";
+    User
+} from "discord.js"
 
-type msg = string | MessagePayload | MessageOptions;
+type msg = string | MessagePayload | MessageOptions
 
 export interface ModMailOptions {
     /**
      * connection string for mongoose
      */
-    mongooseConnectionString: string;
+    mongooseConnectionString: string
 
     /**
      * main guild id
      */
-    guildId: Snowflake;
+    guildId: Snowflake
 
     /**
      * category to create modmail channels in
      */
-    category: Snowflake;
+    category: Snowflake
 
     /**
      * your discord.js client
      */
-    client: Client;
+    client: Client
 
     /**
      * a role that can view modmail tickets
      */
-    modmailRole?: Snowflake;
+    modmailRole?: Snowflake
 
     /**
      * a channel where transcripts are sent to
      */
-    transcriptChannel?: Snowflake;
+    transcriptChannel?: Snowflake
 
     /**
      * custom messages
@@ -48,37 +48,37 @@ export interface ModMailOptions {
         /**
          * sourcebin language for transcript
          */
-        language?: string;
+        language?: string
 
         /**
          * color for embeds
          */
-        embedColor?: ColorResolvable;
+        embedColor?: ColorResolvable
 
         /**
          * initial message to created channel when a new mail is opened
          */
-        channel?: (user: User) => msg;
+        channel?: (user: User) => msg
 
         /**
          * inital message sent to user when the user created a new modmail
          */
-        user?: (user: User) => msg;
+        user?: (user: User) => msg
 
         /**
          * how do you want your message to look?
          */
-        saveMessageFormat?: (message: Message) => string;
-    };
+        saveMessageFormat?: (message: Message) => string
+    }
 }
 
 export interface ModMailModelOptions {
-    User: Snowflake;
-    Channel: Snowflake;
-    Messages: string[];
+    User: Snowflake
+    Channel: Snowflake
+    Messages: string[]
 }
 
 export interface CloseMailSessionOptions {
-    channel: Snowflake;
-    reason: string;
+    channel: Snowflake
+    reason: string
 }

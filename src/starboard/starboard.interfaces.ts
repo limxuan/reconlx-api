@@ -1,35 +1,35 @@
-import { Client, Snowflake } from "discord.js";
+import { Client, Snowflake } from "discord.js"
 
 export interface StarboardClientOptions {
     /**
      * Discord Client
      */
-    client: Client;
+    client: Client
 
     /**
      * Preload data
      */
-    Guilds?: StarboardGuild[];
+    Guilds?: StarboardGuild[]
 }
 
 export interface StarboardGuild {
-    id: Snowflake;
-    options: StarboardGuildOptions;
+    id: Snowflake
+    options: StarboardGuildOptions
 }
 
 export interface StarboardGuildOptions {
     /**
      * Amount of stars required in order to be registered as a starred channel
      */
-    starCount: number;
+    starCount: number
 
     /**
      * Channel to send starred messages
      */
-    starboardChannel: Snowflake;
+    starboardChannel: Snowflake
 }
 
 export interface starMessageData {
-    origin: Snowflake;
-    id: Snowflake;
+    origin: Snowflake
+    id: Snowflake
 }

@@ -1,6 +1,6 @@
-export { ModMailClient } from "./modmail";
+export { ModMailClient } from "./modmail"
 export {
     CloseMailSessionOptions,
     ModMailModelOptions,
-    ModMailOptions,
-} from "./modmail.interface";
+    ModMailOptions
+} from "./modmail.interface"

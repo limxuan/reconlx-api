@@ -1,6 +1,6 @@
-export { GiveawayClient } from "./giveaways";
+export { GiveawayClient } from "./giveaways"
 export {
     GiveawayClientOptions,
     GiveawayClientSchema,
-    StartOptions,
-} from "./giveaways.interfaces";
+    StartOptions
+} from "./giveaways.interfaces"

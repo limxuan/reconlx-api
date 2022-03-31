@@ -1,17 +1,17 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"
 import {
     Client,
     Collection,
     ColorResolvable,
     MessageEmbed,
     TextChannel,
-    User,
-} from "discord.js";
+    User
+} from "discord.js"
 import {
     GiveawayClientOptions,
     GiveawayClientSchema,
-    StartOptions,
-} from "./giveaways.interfaces";
+    StartOptions
+} from "./giveaways.interfaces"
 
 export class GiveawayClient {
     public schema = mongoose.model<GiveawayClientSchema>(
@@ -25,12 +25,12 @@ export class GiveawayClient {
             prize: String,
             description: String,
             hostedBy: String,
-            Activated: Boolean,
+            Activated: Boolean
         })
-    );
-    public options: GiveawayClientOptions;
+    )
+    public options: GiveawayClientOptions
     public collection: Collection<string, GiveawayClientSchema> =
-        new Collection();
+        new Collection()
 
     /**
      * @name GiveawayClient
@@ -39,34 +39,34 @@ export class GiveawayClient {
      */
     constructor(options: GiveawayClientOptions) {
         const { client, mongooseConnectionString, defaultColor, emoji } =
-            options;
+            options
 
         if (mongoose.connection.readyState !== 1) {
             if (!options.mongooseConnectionString)
                 throw new Error(
                     "There is no established  connection with mongoose and a mongoose connection is required!"
-                );
-            mongoose.connect(options.mongooseConnectionString);
+                )
+            mongoose.connect(options.mongooseConnectionString)
         }
         this.options = {
             client,
             mongooseConnectionString,
             defaultColor: defaultColor || "#FF0000",
-            emoji: emoji || "🎉",
-        };
+            emoji: emoji || "🎉"
+        }
 
-        this.ready();
+        this.ready()
     }
 
     private ready() {
         this.schema.find().then((data) => {
-            if (!data?.length) return;
+            if (!data?.length) return
             data.forEach((value) => {
-                this.collection.set(value.MessageID, value);
-            });
-        });
+                this.collection.set(value.MessageID, value)
+            })
+        })
 
-        this.checkWinners();
+        this.checkWinners()
     }
 
     /**
@@ -74,23 +74,22 @@ export class GiveawayClient {
      * @description Starts a giveaway
      */
     public start(options: StartOptions) {
-        const { channel, time, winners, prize, description, hostedBy } =
-            options;
+        const { channel, time, winners, prize, description, hostedBy } = options
         const desc = [
             `Giveaway ends at ${new Date(
                 Date.now() + time
-            ).toLocaleString()}\n` + `Hosted by: ${hostedBy}`,
-        ];
-        if (description) desc.push(`Description: ${description}`);
+            ).toLocaleString()}\n` + `Hosted by: ${hostedBy}`
+        ]
+        if (description) desc.push(`Description: ${description}`)
         const embed = new MessageEmbed()
             .setTitle(`${prize}`)
             .setDescription(desc.join("\n"))
             .setFooter({ text: `${winners} winner(s)` })
             .setColor(this.options.defaultColor)
-            .setTimestamp();
+            .setTimestamp()
 
         channel.send({ embeds: [embed] }).then((msg) => {
-            msg.react(this.options.emoji);
+            msg.react(this.options.emoji)
             const values = {
                 MessageID: msg.id,
                 EndsAt: Date.now() + time,
@@ -100,13 +99,13 @@ export class GiveawayClient {
                 prize,
                 description,
                 hostedBy: hostedBy.id,
-                Activated: true,
-            };
-            const newGiveawaySchema = new this.schema(values);
+                Activated: true
+            }
+            const newGiveawaySchema = new this.schema(values)
 
-            newGiveawaySchema.save();
-            this.collection.set(values.MessageID, values);
-        });
+            newGiveawaySchema.save()
+            this.collection.set(values.MessageID, values)
+        })
     }
 
     /**
@@ -121,43 +120,39 @@ export class GiveawayClient {
             async (err, data) => {
                 const giveawayChannel = this.options.client.channels.cache.get(
                     data.Channel
-                );
-                if (err) throw err;
+                )
+                if (err) throw err
                 if (!data)
                     throw new Error(
                         "There are no giveaways currently running with " +
                             MessageID +
                             " id"
-                    );
+                    )
                 if (getWinner) {
                     this.getReactions(
                         data.Channel,
                         data.MessageID,
                         data.winners
                     ).then((reactions: any) => {
-                        const winners = reactions
-                            .map((user) => user)
-                            .join(", ");
-                        (giveawayChannel as TextChannel).send(
+                        const winners = reactions.map((user) => user).join(", ")
+                        ;(giveawayChannel as TextChannel).send(
                             `Congrats ${winners} you have won **${data.prize}**`
-                        );
-                    });
+                        )
+                    })
                 } else {
                     const oldMessage = await this.getMessage(
                         data.Channel,
                         data.MessageID
-                    );
+                    )
                     oldMessage.edit({
-                        embeds: [
-                            new MessageEmbed().setTitle("Giveaway ended!"),
-                        ],
-                    });
+                        embeds: [new MessageEmbed().setTitle("Giveaway ended!")]
+                    })
                 }
-                data.Activated = false;
-                data.save();
-                this.collection.delete(MessageID);
+                data.Activated = false
+                data.save()
+                this.collection.delete(MessageID)
             }
-        );
+        )
     }
 
     /**
@@ -168,22 +163,22 @@ export class GiveawayClient {
         return new Promise((ful, rej) => {
             const filtered = this.collection.filter(
                 (value) => value.Activated === false
-            );
-            const data = filtered.get(MessageID);
+            )
+            const data = filtered.get(MessageID)
             if (!data)
-                rej("The giveaway does not exist or has not been ended yet");
-            const giveawayChannel = this.getChannel(data.Channel);
+                rej("The giveaway does not exist or has not been ended yet")
+            const giveawayChannel = this.getChannel(data.Channel)
             this.getReactions(data.Channel, MessageID, data.winners).then(
                 (reactions: any) => {
-                    const winner = reactions.map((user) => user).join(", ");
+                    const winner = reactions.map((user) => user).join(", ")
                     giveawayChannel.send(
                         `Giveway has been rerolled, ${winner} ${
                             reactions.size === 1 ? "is" : "are"
                         } the new winner for **${data.prize}**`
-                    );
+                    )
                 }
-            );
-        });
+            )
+        })
     }
 
     /**
@@ -201,9 +196,9 @@ export class GiveawayClient {
                         this.collection.filter(
                             (value) => value.Activated === true
                         )
-                    );
+                    )
                 } else {
-                    ful(this.collection);
+                    ful(this.collection)
                 }
             } else {
                 if (activatedOnly) {
@@ -213,15 +208,15 @@ export class GiveawayClient {
                                 value.Guild === message.guild.id &&
                                 value.Activated === true
                         )
-                    );
+                    )
                 }
                 ful(
                     this.collection.filter(
                         (value) => value.Guild === message.guild.id
                     )
-                );
+                )
             }
-        });
+        })
     }
 
     /**
@@ -235,39 +230,39 @@ export class GiveawayClient {
             this.schema.find(
                 { Guild: guildID, Activated: false },
                 async (err, data) => {
-                    if (err) throw err;
+                    if (err) throw err
                     if (data)
                         data.forEach((data: any) => {
-                            data.delete();
-                        });
+                            data.delete()
+                        })
                 }
-            );
+            )
             const filtered = this.collection.filter(
                 (value) => value.Activated === false && value.Guild === guildID
-            );
+            )
             filtered.forEach((value) => {
-                this.collection.delete(value.MessageID);
-            });
+                this.collection.delete(value.MessageID)
+            })
         } else {
             this.schema.find({ Activated: false }, async (err, data) => {
-                if (err) throw err;
+                if (err) throw err
                 if (data)
                     data.forEach((data: any) => {
-                        data.delete();
-                    });
-            });
+                        data.delete()
+                    })
+            })
             const filtered = this.collection.filter(
                 (value) => value.Activated === false
-            );
+            )
             filtered.forEach((value) => {
-                this.collection.delete(value.MessageID);
-            });
+                this.collection.delete(value.MessageID)
+            })
         }
     }
 
     private getReactions(channelID, messageID, amount) {
         return new Promise((ful, rej) => {
-            (
+            ;(
                 this.options.client.channels.cache.get(channelID) as TextChannel
             ).messages
                 .fetch(messageID)
@@ -276,70 +271,68 @@ export class GiveawayClient {
                         .get(this.options.emoji)
                         .users.fetch()
                         .then((users) => {
-                            const real = users.filter((user) => !user.bot);
+                            const real = users.filter((user) => !user.bot)
                             if (amount && !real.size >= amount)
                                 rej(
                                     "Not Enough Reactions, winner was not decided"
-                                );
-                            ful(real.random(amount));
-                        });
-                });
-        });
+                                )
+                            ful(real.random(amount))
+                        })
+                })
+        })
     }
 
     private getMessage(channel, message) {
         return (
             this.options.client.channels.cache.get(channel) as TextChannel
-        ).messages.fetch(message);
+        ).messages.fetch(message)
     }
 
     private getChannel(value) {
-        return this.options.client.channels.cache.get(value) as TextChannel;
+        return this.options.client.channels.cache.get(value) as TextChannel
     }
 
     private checkWinners() {
         setInterval(() => {
             const endedGiveaways = this.collection.filter(
                 (value) => value.EndsAt < Date.now() && value.Activated === true
-            );
-            if (endedGiveaways.size === 0) return;
+            )
+            if (endedGiveaways.size === 0) return
 
             endedGiveaways.forEach(async (giveaway) => {
-                const giveawayChannel = this.getChannel(giveaway.Channel);
+                const giveawayChannel = this.getChannel(giveaway.Channel)
                 this.getReactions(
                     giveaway.Channel,
                     giveaway.MessageID,
                     giveaway.winners
                 )
                     .then((reactions: any) => {
-                        const winners = reactions
-                            .map((user) => user)
-                            .join(", ");
+                        const winners = reactions.map((user) => user).join(", ")
                         giveawayChannel.send(
                             `Congrats ${winners} you have won **${giveaway.prize}**`
-                        );
+                        )
                     })
                     .catch((err) => {
                         giveawayChannel.send(
                             `No winner was determined for giveaway -> https://discord.com/channels/${giveaway.Guild}/${giveaway.Channel}/${giveaway.MessageID}`
-                        );
-                    });
+                        )
+                    })
                 const oldMessage = await this.getMessage(
                     giveaway.Channel,
                     giveaway.MessageID
-                );
+                )
                 oldMessage.edit({
-                    embeds: [new MessageEmbed().setTitle("Giveaway Ended!")],
-                });
-                this.collection.get(giveaway.MessageID).Activated = false;
+                    embeds: [new MessageEmbed().setTitle("Giveaway Ended!")]
+                })
+                this.collection.get(giveaway.MessageID).Activated = false
                 const props = {
                     MessageID: giveaway.MessageID,
-                    Activated: true,
-                };
-                const data = await this.schema.findOne(props);
-                if (data) data.Activated = false;
-                data.save();
-            });
-        }, 5000);
+                    Activated: true
+                }
+                const data = await this.schema.findOne(props)
+                if (data) data.Activated = false
+                data.save()
+            })
+        }, 5000)
     }
 }

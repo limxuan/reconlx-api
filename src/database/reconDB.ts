@@ -1,8 +1,8 @@
-import mongoose, { Schema } from "mongoose";
-import { Client, Collection } from "discord.js";
+import mongoose, { Schema } from "mongoose"
+import { Client, Collection } from "discord.js"
 
 interface reconDBEvents {
-    ready: (reconDB: reconDB) => unknown;
+    ready: (reconDB: reconDB) => unknown
 }
 
 export class reconDB {
@@ -10,11 +10,11 @@ export class reconDB {
         "recondb-collection",
         new Schema({
             key: String,
-            value: mongoose.SchemaTypes.Mixed,
+            value: mongoose.SchemaTypes.Mixed
         })
-    );
-    public dbCollection: Collection<string, any> = new Collection();
-    public client: Client;
+    )
+    public dbCollection: Collection<string, any> = new Collection()
+    public client: Client
 
     /**
      * @name reconDB
@@ -27,19 +27,19 @@ export class reconDB {
             if (!mongooseConnectionString)
                 throw new Error(
                     "There is no established  connection with mongoose and a mongoose connection is required!"
-                );
+                )
 
-            mongoose.connect(mongooseConnectionString);
+            mongoose.connect(mongooseConnectionString)
         }
-        this.ready();
+        this.ready()
     }
 
     private async ready() {
         await this.schema.find({}).then((data) => {
             data.forEach(({ key, value }) => {
-                this.dbCollection.set(key, value);
-            });
-        });
+                this.dbCollection.set(key, value)
+            })
+        })
     }
 
     /**
@@ -50,15 +50,15 @@ export class reconDB {
      * @example <reconDB>.set("test","js is cool")
      */
     public set(key: string, value: any) {
-        if (!key || !value) return;
+        if (!key || !value) return
         this.schema.findOne({ key }, async (err, data) => {
-            if (err) throw err;
-            if (data) data.value = value;
-            else data = new this.schema({ key, value });
+            if (err) throw err
+            if (data) data.value = value
+            else data = new this.schema({ key, value })
 
-            data.save();
-            this.dbCollection.set(key, value);
-        });
+            data.save()
+            this.dbCollection.set(key, value)
+        })
     }
 
     /**
@@ -68,12 +68,12 @@ export class reconDB {
      * @example <reconDB>.delete("test")
      */
     public delete(key: string) {
-        if (!key) return;
+        if (!key) return
         this.schema.findOne({ key }, async (err, data) => {
-            if (err) throw err;
-            if (data) await data.delete();
-        });
-        this.dbCollection.delete(key);
+            if (err) throw err
+            if (data) await data.delete()
+        })
+        this.dbCollection.delete(key)
     }
 
     /**
@@ -83,8 +83,8 @@ export class reconDB {
      * @example <reconDB>.get('key1')
      */
     public get(key: string): any {
-        if (!key) return;
-        return this.dbCollection.get(key);
+        if (!key) return
+        return this.dbCollection.get(key)
     }
 
     /**
@@ -94,16 +94,16 @@ export class reconDB {
      * @example
      */
     public push(key: string, ...pushValue: any) {
-        const data = this.dbCollection.get(key);
-        const values = pushValue.flat();
+        const data = this.dbCollection.get(key)
+        const values = pushValue.flat()
         if (!Array.isArray(data))
-            throw Error(`You cant push data to a ${typeof data} value!`);
+            throw Error(`You cant push data to a ${typeof data} value!`)
 
-        data.push(pushValue);
+        data.push(pushValue)
         this.schema.findOne({ key }, async (err, res) => {
-            res.value = [...res.value, ...values];
-            res.save();
-        });
+            res.value = [...res.value, ...values]
+            res.save()
+        })
     }
 
     /**
@@ -111,11 +111,11 @@ export class reconDB {
      * @returns Cached data with discord.js collection
      */
     public collection(): Collection<string, any> {
-        return this.dbCollection;
+        return this.dbCollection
     }
 }
 
 export interface reconDBSchema {
-    key: string;
-    value: any;
+    key: string
+    value: any
 }
