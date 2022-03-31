@@ -117,7 +117,14 @@ export const generateTranscript = (
                                             messageContainer.appendChild(
                                                 codeNode
                                             );
-                                        } else {
+                                        } 
+                                        else if(msg.attachments.size > 0){
+                                            var Attachment = msg.attachments;
+                                            Attachment.forEach(async(element) => {
+                                            messageContainer = await Attachemt(element,messageContainer)
+                                            });
+                                        }
+                                        else {
                                             let msgNode =
                                                 document.createElement("span");
                                             let textNode =
@@ -157,3 +164,28 @@ export const generateTranscript = (
         );
     });
 };
+
+
+
+function Attachemt(element,messageContainer){
+    console.log(element.contentType.includes('image'))
+    console.log(element.url);
+    if(element.contentType.includes('image')){
+        let img = document.createElement("img");
+        img.setAttribute("src", element.url);
+        messageContainer.appendChild(img)
+        return messageContainer
+    }
+    else{
+        let textNode = document.createElement("span");
+        textNode = document.createTextNode(element.url);
+        console.log(textNode)
+        let anchor = document.createElement("a");
+        anchor.setAttribute("href", element.url)
+        anchor.appendChild(textNode)
+        console.log(anchor)
+        messageContainer.appendChild(anchor)
+        return messageContainer
+    }
+
+}
