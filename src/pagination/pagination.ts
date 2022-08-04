@@ -120,7 +120,6 @@ export const pagination = async (options: PaginationOptions) => {
     const filter = customFilter || defaultFilter
 
     let message: Message
-    message.createMessageComponentCollector({ componentType: "BUTTON"})
 
 
     const collectorOptions = (): any => {
